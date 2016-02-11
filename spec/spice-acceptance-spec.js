@@ -10,7 +10,7 @@ describe("Spice App", function(){
 	describe("Sends character on missions", function(){
 		When(function(){game.startMission()});
 		And(function(){game.increment()});
-		Then(function(){attackListener.recieveMessage(message).expectToBeCalled()});
+		Then(function(){attackListener.recieveMessage(attackerMessage).expectToBeCalled()});
+		Then(function(){defenderListener.recieveMessage(defenderMessage).expectToBeCalled()});
 	});
 });
-
