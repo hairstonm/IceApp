@@ -3,22 +3,19 @@ describe("game", function(){
 	var arena;
 	var redshirt;
 
+	var mediator;
 	beforeEach(function(){
-		arena = jasmine.createSpyObj('arena',['evaluateCombat','activate']);
-		arena.activate.and.callFake(function(){
-			
-		});
-		
-		game = new Game(arena);
+		arena = jasmine.createSpyObj('arena',['evaluateCombat','activate']);		
+		game = new Game(mediator, arena);
 	});
 
-	describe("evaluateCombat is called when game increments", function(){
-		When(function(){ game.increment(); });
-		Then(function(){ expect(arena.evaluateCombat).toHaveBeenCalled();});
+	it("evaluateCombat is called when game increments", function(){
+		game.increment();
+		expect(arena.evaluateCombat).toHaveBeenCalled();
 	});
 
-	describe("starts a mission", function(){
-		When(function(){ game.startMission(); });
-		Then(function(){ expect(arena.activate).toHaveBeenCalled();});
+	it("starts a mission", function(){
+		game.startMission(); 
+		expect(arena.activate).toHaveBeenCalled();
 	});
 });

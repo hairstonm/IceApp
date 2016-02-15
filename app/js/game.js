@@ -1,14 +1,11 @@
-var Game = function(arena){
+var Game = function(mediator, arena){
 	this.arena = arena;
-	this.inMission = false;
 
 	this.increment = function(){
-		if (this.inMission){
-			arena.evaluateCombat();
-		}
+		arena.evaluateCombat();
 	};
 
 	this.startMission = function(){
-		this.inMission = true;
+		arena.activate();
 	}
 }

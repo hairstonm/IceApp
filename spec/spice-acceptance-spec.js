@@ -4,13 +4,15 @@ describe("Spice App", function(){
 	var mediator;
 
 	beforeEach(function(){
+		arena = new Arena();
+		mediator = new Mediator();
 		game = new Game(mediator, arena);
 	});
 
-	describe("Sends character on missions", function(){
-		When(function(){game.startMission()});
-		And(function(){game.increment()});
-		Then(function(){attackListener.recieveMessage(attackerMessage).expectToBeCalled()});
-		Then(function(){defenderListener.recieveMessage(defenderMessage).expectToBeCalled()});
+	it("Sends character on missions", function(){
+		game.startMission();
+		game.increment();
+		attackListener.recieveMessage(attackerMessage).expectToBeCalled();
+		defenderListener.recieveMessage(defenderMessage).expectToBeCalled();
 	});
 });
