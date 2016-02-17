@@ -1,9 +1,10 @@
-var Arena = function(openArena){
+var Arena = function(openArena, attacker, defender){
 	this.currentArena;
 
-	this.evaluateCombat = function(attacker,defender){
-		attacker.attack(defender);
+	this.evaluateCombat = function(){
+		this.currentArena.evaluateCombat(attacker, defender);
 	};
+
 	this.activate = function(){
 		this.currentArena = openArena;
 	}

@@ -3,7 +3,7 @@ describe("attacker", function(){
 	var defender;
 
 	beforeEach(function(){
-		attacker = new Attacker();
+		attacker = new Combatant();
 		defender = {
 			receiveAttack : function(){}
 		};

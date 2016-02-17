@@ -1,30 +1,25 @@
 describe("arena", function(){
 	var arena;
-	var redshirt;
+	var attacker;
 	var defender;
 	var openArena;
 
 	beforeEach(function(){
-		openArena = {};
-		arena = new Arena(openArena);
-		redshirt = {
+		openArena = {
+			evaluateCombat : function(){}
+		};
+		arena = new Arena(openArena, attacker, defender);
+		attacker = {
 			attack : function(){}
 		};
-
-		spyOn(redshirt, 'attack');
-	});
-
-	it("evaluates combat where Redshirts attack!!!", function(){
-		arena.evaluateCombat(redshirt,defender);
-		expect(redshirt.attack).toHaveBeenCalled();
+		spyOn(openArena, 'evaluateCombat');
+		spyOn(attacker, 'attack');
 	});
 
 	it("activates an open arena", function(){
 		arena.activate();
-		arena.evaluateCombat(redshirt,defender);
+		arena.evaluateCombat(attacker, defender);
 
 		expect(openArena.evaluateCombat).toHaveBeenCalled();
 	});
-
-
 });
