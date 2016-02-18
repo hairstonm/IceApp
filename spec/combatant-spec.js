@@ -1,20 +1,34 @@
 describe("attacker", function(){
 	var attacker;
 	var defender;
+	var mediator;
 
 	beforeEach(function(){
-		attacker = new Combatant();
+		mediator = {
+			sendEvent : function(){}
+		};
+		attacker = new Combatant(mediator);
 		defender = {
 			receiveAttack : function(){}
 		};
 
 		spyOn(defender, 'receiveAttack');
+		spyOn(mediator, 'sendEvent');
 	});
 
-	describe("Defender is attacked!!!", function(){
-		When(function(){ attacker.attack(defender)});
-		Then(function(){ expect(defender.receiveAttack).toHaveBeenCalled();
-		});
+	it("Defender is attacked!!!", function(){
+		attacker.attack(defender);
+		expect(defender.receiveAttack).toHaveBeenCalled();
+	});
+
+	it("Broadcasts attack to mediator", function(){
+		attacker.attack(defender);
+		expect(mediator.sendEvent).toHaveBeenCalled();
+	});
+
+	it("Broadcasts receiving attack", function(){
+		attacker.receiveAttack();
+		expect(mediator.sendEvent).toHaveBeenCalled();
 	});
 });
 
