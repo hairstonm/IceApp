@@ -7,11 +7,14 @@ describe("mediator", function(){
 		listener = {
 			receiveEvent : function(){}
 		};
+		listener = td.object(AttackListener);
 	});
 
 	it("sends a message to the listeners", function(){
 		mediator.registerListener(listener, "attack");
 		mediator.sendEvent();
-		expect(listener.receiveEvent).toHaveBeenCalled();
+		td.verify(listener.receiveEvent)
+
 	});
+
 });	

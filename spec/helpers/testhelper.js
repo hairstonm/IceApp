@@ -1,0 +1,1 @@
+window.td = window.testdouble;
