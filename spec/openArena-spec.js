@@ -5,14 +5,17 @@ describe('OpenArena', function(){
 
 	beforeEach(function(){
 		arena = new OpenArena();
-		redshirt = {
-			attack : function(){}
-		};
-		spyOn(redshirt, 'attack');
+		redshirt = td.object('Combatant');
+		defender = td.object('Combatant');
 	});
 
 	it("evaluates combat where Redshirts attack!!!", function(){
-		arena.evaluateCombat(redshirt,defender);
-		expect(redshirt.attack).toHaveBeenCalled();
+		arena.evaluateCombat(redshirt, defender);
+		td.verify(redshirt.attack(defender));
+	});
+
+	it("tells defender to receive damage", function(){
+		arena.evaluateCombat(redshirt, defender);
+		td.verify(defender.receiveAttack());
 	});
 });

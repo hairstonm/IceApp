@@ -4,23 +4,23 @@ describe("Spice App", function(){
 	var mediator;
 	var openArena;
 	var attackListener;
+	var defenderListener;
 
 	beforeEach(function(){
 		openArena = new OpenArena();
-		arena = new Arena(openArena, new Combatant(), new Combatant());
 		mediator = new Mediator();
+		arena = new Arena(openArena, new Combatant(mediator), new Combatant(mediator));
 		game = new Game(mediator, arena);
-		attackListener = {
-			receiveMessage : function(){}
-		};
-
-		spyOn(attackListener, 'receiveMessage');
+		attackListener = td.object('AttackListener');
+		defenderListener = td.object('DefenderListener');
+		mediator.registerListener(attackListener, "attack");
+		mediator.registerListener(defenderListener, "defend");
 	});
 
 	it("Sends character on missions", function(){
 		game.startMission();
 		game.increment();
-		expect(attackListener.receiveMessage).toHaveBeenCalled();
-		defenderListener.receiveMessage(defenderMessage).expectToBeCalled();
+		td.verify(attackListener.receiveEvent());
+		td.verify(defenderListener.receiveEvent());
 	});
 });

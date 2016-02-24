@@ -1,5 +1,5 @@
-var AttackListener = function(){
+var DefenderListener = function(){
 	this.receiveEvent = function(){
 		
 	}
-};
+}
