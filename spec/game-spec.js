@@ -2,20 +2,22 @@ describe("game", function(){
 	var game;
 	var arena;
 	var redshirt;
-
 	var mediator;
+
 	beforeEach(function(){
-		arena = jasmine.createSpyObj('arena',['evaluateCombat','activate']);		
+		arena = td.object('Arena');
 		game = new Game(mediator, arena);
 	});
 
 	it("evaluateCombat is called when game increments", function(){
 		game.increment();
-		expect(arena.evaluateCombat).toHaveBeenCalled();
+		
+		td.verify(arena.evaluateCombat());
 	});
 
 	it("starts a mission", function(){
 		game.startMission(); 
-		expect(arena.activate).toHaveBeenCalled();
+
+		td.verify(arena.activate());
 	});
 });
