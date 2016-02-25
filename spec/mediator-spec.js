@@ -11,9 +11,9 @@ describe("mediator", function(){
 	it("sends a message to the listeners", function(){
 		mediator.registerListener(attackListener, "attack")
 		mediator.registerListener(defendListener, "defend")
-		mediator.sendEvent("attack")
-		mediator.sendEvent("defend")
-		td.verify(attackListener.receiveEvent())
-		td.verify(defendListener.receiveEvent())
+		mediator.sendEvent("attack", "I attack!!!!")
+		mediator.sendEvent("defend", "I received damage!!!")
+		td.verify(attackListener.receiveEvent("I attack!!!!"))
+		td.verify(defendListener.receiveEvent("I received damage!!!"))
 	});
 });	

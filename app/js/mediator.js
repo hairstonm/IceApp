@@ -1,11 +1,10 @@
 var Mediator = function(){
-	var target;
-
+	var listeners = {};
 	this.registerListener = function(listener, messageType){
-		target = listener;
+		listeners[messageType] = listener
 	};
 
-	this.sendEvent = function(){
-		target.receiveEvent();
+	this.sendEvent = function(messageType, message){
+		listeners[messageType].receiveEvent(message);
 	};
 }

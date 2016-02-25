@@ -20,7 +20,7 @@ describe("Spice App", function(){
 	it("Sends character on missions", function(){
 		game.startMission();
 		game.increment();
-		td.verify(attackListener.receiveEvent());
-		td.verify(defenderListener.receiveEvent());
+		td.verify(attackListener.receiveEvent("attack"));
+		td.verify(defenderListener.receiveEvent("defend"));
 	});
 });
