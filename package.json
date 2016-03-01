@@ -5,6 +5,7 @@
   "private": true,
   "author": "John Doe",
   "devDependencies": {
+    "angular-mocks": "^1.5.0",
     "lineman": "~0.36.6",
     "requirejs": "^2.1.22",
     "testdouble": "^0.8.0"
@@ -13,5 +14,8 @@
     "start": "lineman run",
     "test": "lineman spec-ci",
     "production": "lineman clean build && npm i express@3 && node -e \"var e = require('express'), a = e(); a.use(e.static('dist/')); a.listen(process.env.PORT)\""
+  },
+  "dependencies": {
+    "angular": "^1.5.0"
   }
 }

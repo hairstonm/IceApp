@@ -17,7 +17,7 @@ describe("Spice App", function(){
 		mediator.registerListener(defenderListener, "defend");
 	});
 
-	it("Sends character on missions", function(){
+	it("allows combatants to go on missions", function(){
 		game.startMission();
 		game.increment();
 		td.verify(attackListener.receiveEvent("attack"));
