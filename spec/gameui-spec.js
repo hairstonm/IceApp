@@ -1,20 +1,21 @@
 describe("Game UI ", function(){
 
+
 	beforeEach(function(){
 		module('app');
-});
-	var $controller;
+	});
 
-	beforeEach(inject(function(_$controller_){
-		$controller = _$controller_;
+	beforeEach(inject(function($controller,$rootScope){
+		 this.scope = $rootScope.$new();
+		 this.game = td.object('Game');
+		$controller('GameController',{
+			$scope: this.scope,
+			game: this.game
+		});
 	}));
 
-		it('starts mission', function(){
-			var $scope = {};
-			$scope.game = td.object('Game');
-			$scope.startMission();
-
-			td.verify($scope.game.startMission());	
-		});
-		
+	it('starts mission', function(){
+		this.scope.startMission();
+		td.verify(this.game.startMission());	
+	});
 });
