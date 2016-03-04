@@ -5,10 +5,14 @@
   "private": true,
   "author": "John Doe",
   "devDependencies": {
+    "coffee-script": "^1.6.3",
+    "jasmine-given": "^2.6.2",
     "angular-mocks": "^1.5.0",
     "lineman": "~0.36.6",
     "requirejs": "^2.1.22",
-    "testdouble": "^0.8.0"
+    "testdouble": "^0.8.0",
+    "lineman-angular": "^0.3.0",
+    "protractor": "^1.4.0"
   },
   "scripts": {
     "start": "lineman run",
