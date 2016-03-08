@@ -4,18 +4,18 @@ describe("mediator", function(){
 
 	beforeEach(function(){
 		mediator = new Mediator();
-		attackListener = td.object('AttackListener')
-		defendListener = td.object('DefendListener')
+		attackListener = td.object('AttackListener');
+		defendListener = td.object('DefendListener');
 	});
 
 	it("sends a message to the listeners", function(){
-		mediator.registerListener(attackListener, "attack")
-		mediator.registerListener(defendListener, "defend")
+		mediator.registerListener("attack",attackListener);
+		mediator.registerListener("defend", defendListener);
 
-		mediator.sendEvent("attack", "I attack!!!!")
-		mediator.sendEvent("defend", "I received damage!!!")
+		mediator.sendEvent("attack", "I attack!!!!");
+		mediator.sendEvent("defend", "I received damage!!!");
 		
-		td.verify(attackListener.receiveEvent("I attack!!!!"))
-		td.verify(defendListener.receiveEvent("I received damage!!!"))
+		td.verify(attackListener.receiveEvent("I attack!!!!"));
+		td.verify(defendListener.receiveEvent("I received damage!!!"));
 	});
 });	

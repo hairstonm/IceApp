@@ -1,6 +1,6 @@
 var Mediator = function(){
 	var listeners = {};
-	this.registerListener = function(listener, messageType){
+	this.registerListener = function(messageType, listener){
 		listeners[messageType] = listener
 	};
 

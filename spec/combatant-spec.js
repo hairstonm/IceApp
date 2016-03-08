@@ -10,18 +10,18 @@ describe("attacker", function(){
 	});
 
 	it("Defender is attacked!!!", function(){
-		attacker.attack(defender)
-		td.verify(defender.receiveAttack())
+		attacker.attack(defender);
+		td.verify(defender.receiveAttack());
 	});
 
 	it("Broadcasts attack to mediator", function(){
-		attacker.attack(defender)
-		td.verify(mediator.sendEvent("attack","attack"))
+		attacker.attack(defender);
+		td.verify(mediator.sendEvent("attack","attack"));
 	});
 
 	it("Broadcasts receiving attack", function(){
-		attacker.receiveAttack()
-		td.verify(mediator.sendEvent("defend","defend"))
+		attacker.receiveAttack();
+		td.verify(mediator.sendEvent("defend","defend"));
 	});
 });
 

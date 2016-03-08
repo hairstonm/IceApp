@@ -6,7 +6,6 @@ var Game = function(mediator, arena){
 	};
 
 	this.startMission = function(){
-		console.log("game starts mission")
 		arena.activate();
 		this.increment();
 	}

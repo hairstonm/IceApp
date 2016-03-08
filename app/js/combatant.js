@@ -1,7 +1,7 @@
 var Combatant = function(mediator){
 	this.attack = function(defender){
-		defender.receiveAttack();
 		mediator.sendEvent("attack","attack");
+		defender.receiveAttack();
 	};
 
 	this.receiveAttack = function(){

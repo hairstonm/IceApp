@@ -1,33 +1,25 @@
 var myApp = angular.module('app', []);
 
 myApp.directive('mission', function(game){
-	// var link = function($scope){
-	// 	$scope.startMission = function(){
-	// 		game.startMission();
-	// 	}
-	function MissionCtrl(game) {
-		
+	function missionCtrl(game) {
 		this.startMission = function(){
 			game.startMission();
 		}
 	};
 	
 	return {
-		template: [
+		restrict: 'E',
+		replace: true,
+		template: ['<div>',
 		 '<form>',
 		 	'<button ng-click="mission.startMission()">this is a button</button>',
-		 '</form>'
+		 '</form>',
+		 '<div class="mission-log"></div                                             k>',
+		 '</div>'
 		 ].join(''),
 		 // scope: {},
-		 controller: MissionCtrl,
+		 controller: missionCtrl,
 		 controllerAs: 'mission',
 		 bindToController:true
 	};
 });
-
-// myApp.controller('GameController', function($scope,game){
-
-// 	$scope.startMission = function(){
-// 		game.startMission();
-// 	}
-// });

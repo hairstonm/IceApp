@@ -13,9 +13,4 @@ describe('OpenArena', function(){
 		arena.evaluateCombat(redshirt, defender);
 		td.verify(redshirt.attack(defender));
 	});
-
-	it("tells defender to receive damage", function(){
-		arena.evaluateCombat(redshirt, defender);
-		td.verify(defender.receiveAttack());
-	});
 });

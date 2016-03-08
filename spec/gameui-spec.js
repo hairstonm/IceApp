@@ -1,21 +1,24 @@
 describe("Game UI ", function(){
-
+	var missionString = "<mission></mission>";
+	var $compile;
+	var $rootScope;
 
 	beforeEach(function(){
 		module('app');
 	});
 
-	beforeEach(inject(function($controller,$rootScope){
-		 this.scope = $rootScope.$new();
-		 this.game = td.object('Game');
-		$controller('GameController',{
-			$scope: this.scope,
-			game: this.game
-		});
-	}));
+	 
+	beforeEach(inject(function(_$compile_, _$rootScope_){
+    $compile = _$compile_;
+    $rootScope = _$rootScope_;
+  })); 
 
 	it('starts mission', function(){
-		this.scope.startMission();
-		td.verify(this.game.startMission());	
+		var element = $compile(missionString)($rootScope);
+		$rootScope.$digest();
+
+		element.triggerHandler("click");
+		console.log("test" +element.html());
+		expect(element.html()).toContain("attack");
 	});
 });
