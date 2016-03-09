@@ -6,8 +6,11 @@ myApp.directive('mission', function(game){
 			game.startMission();
 		}
 	};
-	
+	function link(scope) {
+		var mission = scope.mission;
+	};
 	return {
+
 		restrict: 'E',
 		replace: true,
 		template: ['<div>',
