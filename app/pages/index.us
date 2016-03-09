@@ -9,6 +9,6 @@
     <script type="text/javascript" src="<%= js %>"></script>
     <div ng-app ='app'>
     	<span mission>You Done Broke it.</span>
-    	</div>
+    	<div ng-bind='missionLog'></div>
   </body>
 </html>

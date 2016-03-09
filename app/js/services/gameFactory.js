@@ -5,5 +5,4 @@ angular.module("app").factory('game', function() {
 	mediator.registerListener("attack", new AttackListener());
 	mediator.registerListener("defend", new DefenderListener());
 	return new Game(mediator, arena);
-
 });

@@ -13,11 +13,8 @@ myApp.directive('mission', function(game){
 		template: ['<div>',
 		 '<form>',
 		 	'<button ng-click="mission.startMission()">this is a button</button>',
-		 '</form>',
-		 '<div class="mission-log"></div                                             k>',
-		 '</div>'
+		 '</form>'
 		 ].join(''),
-		 // scope: {},
 		 controller: missionCtrl,
 		 controllerAs: 'mission',
 		 bindToController:true
