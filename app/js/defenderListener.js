@@ -1,5 +1,5 @@
 var DefenderListener = function(){
 	this.receiveEvent = function(message){
-		console.log(message);
+		this.scope.missionLog.push(message);
 	}
 }
