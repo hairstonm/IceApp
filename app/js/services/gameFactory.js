@@ -1,7 +1,8 @@
 angular.module("app").factory('game', ['listeners', function(listeners) {
 	var openArena = new OpenArena();
+	var closedArena = new ClosedArena();
 	var	mediator = new Mediator();
-	var	arena = new Arena(openArena, new Combatant(mediator), new Combatant(mediator));
+	var	arena = new Arena(openArena, closedArena, new Combatant(mediator), new Combatant(mediator));
 	mediator.registerListener("attack", listeners.attack);
 	mediator.registerListener("defend", listeners.defend);
 	return new Game(mediator, arena);
@@ -14,9 +15,13 @@ angular.module("app").factory('listeners', function(){
 	};
 });
 
-angular.module("app").controller('gameIncrementer', ['$scope', '$interval', 'game',
-	function($scope, $interval, game) {
+angular.module("app").controller('gameIncrementer', ['$scope', '$interval', 'game', 'listeners',
+	function($scope, $interval, game, listeners) {
+		$scope.missionLog = [];
 		$interval(function(){
+			for(listener in listeners){
+				listeners[listener].scope = $scope;
+			}
 			game.increment()
 		}, 1000);
 	}
