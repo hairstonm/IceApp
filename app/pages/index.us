@@ -8,7 +8,8 @@
   <body>
     <script type="text/javascript" src="<%= js %>"></script>
     <div ng-app ='app'>
+    <div ng-controller="gameIncrementer">
     	<mission>You Done Broke it.</mission>
-    	<!-- <div ng-bind='missionLog'></div> -->
+    </div>
   </body>
 </html>

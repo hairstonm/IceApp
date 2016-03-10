@@ -19,6 +19,6 @@ describe("Game UI ", function(){
 
 		element.triggerHandler("click");
 		console.log("test" +element.html());
-		expect(element.html()).toContain("attack");
+		expect(element.html()).eventually.toContain("attack");
 	});
 });

@@ -7,6 +7,5 @@ var Game = function(mediator, arena){
 
 	this.startMission = function(){
 		arena.activate();
-		this.increment();
 	}
 }
