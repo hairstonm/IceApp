@@ -11,7 +11,7 @@
     <div ng-controller="gameIncrementer">
     	<mission>You Done Broke it.</mission>
       <div ng-repeat="message in missionLog track by $index">
-        <div> {{ message }} </div>
+        <div class="messages"> {{ message }} </div>
       </div>
     </div>
   </body>

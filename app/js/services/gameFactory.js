@@ -18,6 +18,7 @@ angular.module("app").factory('listeners', function(){
 angular.module("app").controller('gameIncrementer', ['$scope', '$interval', 'game', 'listeners',
 	function($scope, $interval, game, listeners) {
 		$scope.missionLog = [];
+		$scope.missionInProgress = false;
 		$interval(function(){
 			for(listener in listeners){
 				listeners[listener].scope = $scope;
