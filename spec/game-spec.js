@@ -20,4 +20,10 @@ describe("game", function(){
 
 		td.verify(arena.activate());
 	});
+
+	it("stops a mission", function(){
+		game.stopMission();
+
+		td.verify(arena.deactivate());
+	});
 });

@@ -8,4 +8,8 @@ var Arena = function(openArena, closedArena, attacker, defender){
 	this.activate = function(){
 		this.currentArena = openArena;
 	}
+
+	this.deactivate = function(){
+		this.currentArena = closedArena;
+	}
 };

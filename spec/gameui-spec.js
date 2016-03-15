@@ -20,6 +20,9 @@ describe("Game UI ", function(){
 	beforeEach(function(){
 		element = $compile(missionString)($rootScope);
 		$rootScope.missionLog = [];
+		$rootScope.toggleMissionStatus = function(){
+			$rootScope.$broadcast('toggleMissionStatus');
+		}
 		$rootScope.missionInProgress = false;
 		listeners.attack.scope = $rootScope;
 		listeners.defend.scope = $rootScope;

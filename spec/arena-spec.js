@@ -25,4 +25,11 @@ describe("arena", function(){
 
 		td.verify(closedArena.evaluateCombat(attacker, defender));
 	});
+
+	it("deactivates and open arena", function(){
+		arena.activate();
+		arena.deactivate();
+
+		td.verify(closedArena.evaluateCombat(attacker, defender));
+	})
 });
