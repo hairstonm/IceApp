@@ -15,17 +15,25 @@ angular.module("app").factory('listeners', function(){
 	};
 });
 
+var assignScopeToListeners = function(listeners, $rootScope){
+	for(listener in listeners){
+		listeners[listener].scope = $rootScope;
+	}
+}
+
+var defineToggleMissionStatus = function($rootScope){
+	$rootScope.toggleMissionStatus = function(){
+		$rootScope.$broadcast('toggleMissionStatus');
+	}
+}
+
 angular.module("app").controller('gameIncrementer', ['$rootScope', '$interval', 'game', 'listeners',
 	function($rootScope, $interval, game, listeners) {
 		$rootScope.missionInProgress = false;
-		$rootScope.toggleMissionStatus = function(){
-			$rootScope.$broadcast('toggleMissionStatus');
-		}
+		defineToggleMissionStatus($rootScope);
 		$rootScope.missionLog = [];
 		$interval(function(){
-			for(listener in listeners){
-				listeners[listener].scope = $rootScope;
-			}
+			assignScopeToListeners(listeners,$rootScope);
 			game.increment()
 		}, 1000);
 	}

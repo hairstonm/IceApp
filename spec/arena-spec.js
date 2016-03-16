@@ -26,9 +26,14 @@ describe("arena", function(){
 		td.verify(closedArena.evaluateCombat(attacker, defender));
 	});
 
-	it("deactivates and open arena", function(){
+	it("deactivates an open arena", function(){
 		arena.activate();
+		arena.evaluateCombat(attacker, defender);
+		
+		td.verify(openArena.evaluateCombat(attacker, defender));
+		
 		arena.deactivate();
+		arena.evaluateCombat(attacker, defender);
 
 		td.verify(closedArena.evaluateCombat(attacker, defender));
 	})
