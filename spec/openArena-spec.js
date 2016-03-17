@@ -5,8 +5,8 @@ describe('OpenArena', function(){
 
 	beforeEach(function(){
 		arena = new OpenArena();
-		redshirt = td.object('Combatant');
-		defender = td.object('Combatant');
+		redshirt = td.object('CombatParty');
+		defender = td.object('CombatParty');
 	});
 
 	it("evaluates combat where Redshirts attack!!!", function(){

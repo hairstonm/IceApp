@@ -1,6 +1,6 @@
-var Combatant = function(mediator){
+var CombatParty = function(baseDamage, mediator){
 	this.attack = function(defender){
-		mediator.sendEvent("attack","attack");
+		mediator.sendEvent("attack",{damage:baseDamage});
 		defender.receiveAttack();
 	};
 

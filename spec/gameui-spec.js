@@ -33,7 +33,7 @@ describe("Game UI ", function(){
 		element.find("button").triggerHandler("click");
 		gameInstance.increment();
 		
-		expect($rootScope.missionLog[0]).toEqual("attack");
+		expect($rootScope.missionLog[0]).toEqual("Attacked for 5 points of damage");
 	});
 
 	it('stops mission', function(){
