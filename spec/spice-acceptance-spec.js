@@ -43,5 +43,5 @@ describe("Spice App", function(){
 		expect(captor.value.type).toEqual("PuppyMonkeyBaby");
 	});
 
-
+	
 });
