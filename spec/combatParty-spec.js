@@ -6,7 +6,7 @@ describe("attacker", function(){
 	beforeEach(function(){
 		baseDamage = 5;
 		mediator = td.object('Mediator');
-		attacker = new CombatParty(baseDamage,mediator);
+		attacker = new CombatParty(baseDamage,mediator,'Redshirt');
 		defender = td.object('CombatParty');
 	});
 
@@ -26,5 +26,12 @@ describe("attacker", function(){
 		attacker.receiveAttack(baseDamage);
 		td.verify(mediator.sendEvent("defend",{damage : baseDamage}));
 	});
+
+	it("reports the type of the attacker", function(){
+		var captor = td.matchers.captor();
+		attacker.attack(defender);
+		td.verify(mediator.sendEvent("attack",captor.capture()));
+		expect(captor.value.type).toEqual("Redshirt");
+	})
 });
 

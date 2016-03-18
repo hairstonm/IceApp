@@ -21,9 +21,8 @@ describe("Spice App", function(){
 	it("allows combatants to go on missions", function(){
 		game.startMission();
 		game.increment();
-		td.verify(attackListener.receiveEvent({damage : 5}));
-		td.verify(defenderListener.receiveEvent({damage : 5}));
-		td.verify(attackListener.receiveEvent({damage : 4}));
-		td.verify(defenderListener.receiveEvent({damage : 4}));
+		
+		td.verify(attackListener.receiveEvent(td.matchers.anything()), {times: 2});
+		td.verify(defenderListener.receiveEvent(td.matchers.anything()), {times: 2});
 	});
 });
