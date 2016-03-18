@@ -42,6 +42,6 @@ describe("Game UI ", function(){
 		element.find("button").triggerHandler("click");
 		gameInstance.increment();
 
-		expect($rootScope.missionLog.length).toEqual(2);
+		expect($rootScope.missionLog.length).toEqual(4);
 	});
 });

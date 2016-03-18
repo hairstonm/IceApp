@@ -1,16 +1,21 @@
 describe('OpenArena', function(){
 	var arena;
-	var redshirt;
+	var attacker;
 	var defender;
 
 	beforeEach(function(){
 		arena = new OpenArena();
-		redshirt = td.object('CombatParty');
+		attacker = td.object('CombatParty');
 		defender = td.object('CombatParty');
 	});
 
-	it("evaluates combat where Redshirts attack!!!", function(){
-		arena.evaluateCombat(redshirt, defender);
-		td.verify(redshirt.attack(defender));
+	it("evaluates combat where attacker deals damage", function(){
+		arena.evaluateCombat(attacker, defender);
+		td.verify(attacker.attack(defender));
+	});
+
+	it("evaluates combat where defender deals damage", function(){
+		arena.evaluateCombat(attacker, defender);
+		td.verify(defender.attack(attacker));
 	});
 });

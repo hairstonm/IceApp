@@ -23,5 +23,7 @@ describe("Spice App", function(){
 		game.increment();
 		td.verify(attackListener.receiveEvent({damage : 5}));
 		td.verify(defenderListener.receiveEvent({damage : 5}));
+		td.verify(attackListener.receiveEvent({damage : 4}));
+		td.verify(defenderListener.receiveEvent({damage : 4}));
 	});
 });
