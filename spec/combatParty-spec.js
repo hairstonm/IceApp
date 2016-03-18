@@ -23,8 +23,10 @@ describe("attacker", function(){
 	});
 
 	it("Broadcasts receiving attack", function(){
+		var captor = td.matchers.captor();
 		attacker.receiveAttack(baseDamage);
-		td.verify(mediator.sendEvent("defend",{damage : baseDamage}));
+		td.verify(mediator.sendEvent("defend",captor.capture()));
+		expect(captor.value.damage).toEqual(5);
 	});
 
 	it("reports the type of the attacker", function(){
@@ -32,6 +34,12 @@ describe("attacker", function(){
 		attacker.attack(defender);
 		td.verify(mediator.sendEvent("attack",captor.capture()));
 		expect(captor.value.type).toEqual("Redshirt");
-	})
-});
+	});
 
+	it("reports the type of the defender", function(){
+		var captor = td.matchers.captor();
+		attacker.receiveAttack(defender);
+		td.verify(mediator.sendEvent("defend",captor.capture()));
+		expect(captor.value.type).toEqual("Redshirt");
+	});
+});
