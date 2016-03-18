@@ -2,16 +2,17 @@ describe("attacker", function(){
 	var attacker;
 	var defender;
 	var mediator;
-
+	var baseDamage; 
 	beforeEach(function(){
+		baseDamage = 5;
 		mediator = td.object('Mediator');
-		attacker = new CombatParty(5,mediator);
+		attacker = new CombatParty(baseDamage,mediator);
 		defender = td.object('CombatParty');
 	});
 
 	it("Defender is attacked!!!", function(){
 		attacker.attack(defender);
-		td.verify(defender.receiveAttack());
+		td.verify(defender.receiveAttack(baseDamage));
 	});
 
 	it("Broadcasts attack to mediator", function(){
@@ -22,8 +23,8 @@ describe("attacker", function(){
 	});
 
 	it("Broadcasts receiving attack", function(){
-		attacker.receiveAttack();
-		td.verify(mediator.sendEvent("defend","defend"));
+		attacker.receiveAttack(baseDamage);
+		td.verify(mediator.sendEvent("defend",{damage : baseDamage}));
 	});
 });
 
