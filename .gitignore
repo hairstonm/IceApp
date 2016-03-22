@@ -5,5 +5,5 @@
 
 /dist
 /generated
-
+debug.log
 .sass-cache
