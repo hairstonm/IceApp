@@ -53,7 +53,6 @@ describe("attacker", function(){
 
 		td.verify(mediator.sendEvent("dead", captor.capture()));
 		expect(captor.value.type).toEqual("Redshirt");
-
 	});
 
 

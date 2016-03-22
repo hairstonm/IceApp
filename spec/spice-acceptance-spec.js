@@ -43,5 +43,14 @@ describe("Spice App", function(){
 		expect(captor.value.type).toEqual("PuppyMonkeyBaby");
 	});
 
+	it("stops mission when combatant dies", function(){
+		game.startMission();
+		debugger;
+		game.increment();
+		game.increment();
+		game.increment();
+
+		td.verify(game.stopMission());
+	});
 	
 });
