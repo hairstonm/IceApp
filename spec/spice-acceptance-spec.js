@@ -18,7 +18,8 @@ describe("Spice App", function(){
 		attackListener = td.object('AttackListener');
 		defenderListener = td.object('DefenderListener');
 		battleListener = td.object('BattleListener');
-		defenderDead = td.object('DeathMessage')
+		defenderDead = td.object('DeathMessage');
+		closedArena = td.object('ClosedArena');
 		mediator.registerListener("attack", attackListener);
 		mediator.registerListener("defend", defenderListener);
 		mediator.registerListener("dead", battleListener);
@@ -45,12 +46,15 @@ describe("Spice App", function(){
 
 	it("stops mission when combatant dies", function(){
 		game.startMission();
-		debugger;
+
 		game.increment();
 		game.increment();
+		game.increment();	
 		game.increment();
 
-		td.verify(game.stopMission());
+		td.verify(closedArena.evaluateCombat());
+
+
 	});
 	
 });
