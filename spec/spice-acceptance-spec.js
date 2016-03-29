@@ -6,19 +6,24 @@ describe("Spice App", function(){
 	var closedArena;
 	var attackListener;
 	var defenderListener;
-
+	var battle;
+	var attacker;
+	var defender;
+	
 	beforeEach(function(){
 		var baseHealth = 15;
 		openArena = new OpenArena();
 		mediator = new Mediator();
-		arena = new Arena(openArena, closedArena,
-			new CombatParty(5, baseHealth, mediator, "Redshirt"),
-		    new CombatParty(4, baseHealth, mediator, "PuppyMonkeyBaby"));
+		attacker = new CombatParty(5, baseHealth, mediator, "Redshirt");
+		defender = new CombatParty(4, baseHealth, mediator, "PuppyMonkeyBaby");
+		battle = new Battle(attacker, defender);
+		arena = new Arena(openArena, closedArena, battle);
 		game = new Game(mediator, arena);
 		attackListener = td.object('AttackListener');
 		defenderListener = td.object('DefenderListener');
 		battleListener = td.object('BattleListener');
-		defenderDead = td.object('DeathMessage')
+		defenderDead = td.object('DeathMessage');
+		closedArena = td.object('ClosedArena');
 		mediator.registerListener("attack", attackListener);
 		mediator.registerListener("defend", defenderListener);
 		mediator.registerListener("dead", battleListener);
@@ -43,14 +48,13 @@ describe("Spice App", function(){
 		expect(captor.value.type).toEqual("PuppyMonkeyBaby");
 	});
 
-	it("stops mission when combatant dies", function(){
+	it("battle loads new defender when attacker kills defender", function(){
 		game.startMission();
-		debugger;
+
 		game.increment();
 		game.increment();
 		game.increment();
 
-		td.verify(game.stopMission());
+		td.verify(battle.loadNewDefender());
 	});
-	
 });

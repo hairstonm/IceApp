@@ -7,15 +7,11 @@ describe('OpenArena', function(){
 		arena = new OpenArena();
 		attacker = td.object('CombatParty');
 		defender = td.object('CombatParty');
+		battle = td.object('Battle');
 	});
 
-	it("evaluates combat where attacker deals damage", function(){
-		arena.evaluateCombat(attacker, defender);
-		td.verify(attacker.attack(defender));
-	});
-
-	it("evaluates combat where defender deals damage", function(){
-		arena.evaluateCombat(attacker, defender);
-		td.verify(defender.attack(attacker));
+	it("evaluates combat in a battle", function(){
+		arena.evaluateCombat(battle);
+		td.verify(battle.evaluateCombat());
 	});
 });

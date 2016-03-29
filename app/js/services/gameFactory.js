@@ -3,9 +3,10 @@ angular.module("app").factory('game', ['listeners', function(listeners) {
 	var closedArena = new ClosedArena();
 	var	mediator = new Mediator();
 	var baseHealth = 15;
-	var	arena = new Arena(openArena, closedArena,
-	 	new CombatParty(5, baseHealth, mediator, "Redshirt"),
-	  	new CombatParty(4, baseHealth, mediator, "PuppyMonkeyBaby"));
+	var attacker = new CombatParty(5, baseHealth, mediator, "Redshirt");
+	var defender = new CombatParty(4, baseHealth, mediator, "PuppyMonkeyBaby");
+	var battle = new Battle(attacker, defender);
+	var	arena = new Arena(openArena, closedArena, battle);
 	mediator.registerListener("attack", listeners.attack);
 	mediator.registerListener("defend", listeners.defend);
 	mediator.registerListener('dead', listeners.dead);
@@ -38,6 +39,7 @@ angular.module("app").controller('gameIncrementer', ['$rootScope', '$interval', 
 		$rootScope.missionButtonText = "Start Mission";
 		defineToggleMissionStatus($rootScope);
 		$rootScope.missionLog = [];
+		$rootScope.game = game;
 		$interval(function(){
 			assignScopeToListeners(listeners,$rootScope);
 			game.increment()
