@@ -9,7 +9,7 @@ describe("Spice App", function(){
 	var battle;
 	var attacker;
 	var defender;
-	
+
 	beforeEach(function(){
 		var baseHealth = 15;
 		openArena = new OpenArena();
@@ -51,6 +51,7 @@ describe("Spice App", function(){
 	it("battle loads new defender when attacker kills defender", function(){
 		game.startMission();
 
+		game.increment();
 		game.increment();
 		game.increment();
 		game.increment();
