@@ -9,6 +9,7 @@ describe("Spice App", function(){
 	var battle;
 	var attacker;
 	var defender;
+	var newDefender;
 
 	beforeEach(function(){
 		var baseHealth = 15;
@@ -16,6 +17,7 @@ describe("Spice App", function(){
 		mediator = new Mediator();
 		attacker = new CombatParty(5, baseHealth, mediator, "Redshirt");
 		defender = new CombatParty(4, baseHealth, mediator, "PuppyMonkeyBaby");
+		newDefender = new CombatParty(8, baseHealth, mediator, "The Kraken");
 		battle = new Battle(attacker, defender);
 		arena = new Arena(openArena, closedArena, battle);
 		game = new Game(mediator, arena);
@@ -56,6 +58,6 @@ describe("Spice App", function(){
 		game.increment();
 		game.increment();
 
-		td.verify(battle.loadNewDefender());
+		td.verify(battle.loadNewDefender(newDefender));
 	});
 });

@@ -13,6 +13,5 @@ var CombatParty = function(baseDamage, baseHealth, mediator, type){
 			mediator.sendEvent("defend", new AttackMessage(baseDamage, type));
 		};
 	};
-
 	this.health = baseHealth;
 };
