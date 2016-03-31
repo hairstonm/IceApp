@@ -10,15 +10,17 @@ describe("Spice App", function(){
 	var attacker;
 	var defender;
 	var newDefender;
+	var combatPartyFactory;
 
 	beforeEach(function(){
 		var baseHealth = 15;
+		combatPartyFactory = new CombatPartyFactory();
 		openArena = new OpenArena();
 		mediator = new Mediator();
 		attacker = new CombatParty(5, baseHealth, mediator, "Redshirt");
 		defender = new CombatParty(4, baseHealth, mediator, "PuppyMonkeyBaby");
 		newDefender = new CombatParty(8, baseHealth, mediator, "The Kraken");
-		battle = new Battle(attacker, defender);
+		battle = new Battle(attacker, defender, combatPartyFactory);
 		arena = new Arena(openArena, closedArena, battle);
 		game = new Game(mediator, arena);
 		attackListener = td.object('AttackListener');
@@ -56,8 +58,7 @@ describe("Spice App", function(){
 		game.increment();
 		game.increment();
 		game.increment();
-		game.increment();
 
-		td.verify(battle.loadNewDefender(newDefender));
+		td.verify(battle.loadNewDefender());
 	});
 });

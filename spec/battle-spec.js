@@ -2,11 +2,13 @@ describe("battle", function() {
   var attacker;
   var defender;
   var battle;
+  var combatPartyFactory;
 
   beforeEach(function() {
     attacker = td.object("CombatParty");
     defender = td.object("CombatParty");
-    battle = new Battle(attacker, defender);
+    combatPartyFactory = td.object("CombatPartyFactory");
+    battle = new Battle(attacker, defender, combatPartyFactory);
   });
 
   it("uses attacker to attack defender", function() {
@@ -22,10 +24,8 @@ describe("battle", function() {
   });
 
   it("loads new defender when defender dies", function() {
-    var newDefender = td.object("CombatParty");
-    battle.loadNewDefender(newDefender);
-    battle.evaluateCombat();
+    battle.loadNewDefender();
 
-    td.verify(attacker.attack(newDefender));
+    td.verify(combatPartyFactory.newCombatParty());
   });
 });

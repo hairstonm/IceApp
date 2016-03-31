@@ -9,10 +9,10 @@ describe('battleListener', function(){
     $scope.missionLog = [];
   }));
     it('tells the battle to load up a new defender', function(){
-    var battleListener = new BattleListener();
+    var battleListener = new BattleListener(battle);
 
     battleListener.receiveEvent(deathMessage);
 
-    td.verify(battle.loadNewDefender(defender));
+    td.verify(battle.loadNewDefender());
   })
 })

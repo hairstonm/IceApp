@@ -1,11 +1,12 @@
 angular.module("app").factory('game', ['listeners', function(listeners) {
+	var combatPartyFactory = new CombatPartyFactory();
 	var openArena = new OpenArena();
 	var closedArena = new ClosedArena();
 	var	mediator = new Mediator();
 	var baseHealth = 15;
 	var attacker = new CombatParty(5, baseHealth, mediator, "Redshirt");
 	var defender = new CombatParty(4, baseHealth, mediator, "PuppyMonkeyBaby");
-	var battle = new Battle(attacker, defender);
+	var battle = new Battle(attacker, defender, combatPartyFactory);
 	var	arena = new Arena(openArena, closedArena, battle);
 	mediator.registerListener("attack", listeners.attack);
 	mediator.registerListener("defend", listeners.defend);
@@ -17,7 +18,7 @@ angular.module("app").factory('listeners', function(){
 	return {
 		attack : new AttackListener(),
 		defend : new DefenderListener(),
-		dead : new BattleListener()
+		dead : new DeathListener()
 	};
 });
 

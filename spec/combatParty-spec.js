@@ -1,8 +1,8 @@
-describe("attacker", function(){
+describe("combatParty", function(){
 	var attacker;
 	var defender;
 	var mediator;
-	var baseDamage; 
+	var baseDamage;
 	beforeEach(function(){
 		baseDamage = 5;
 		baseHealth = 15;
