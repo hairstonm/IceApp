@@ -3,7 +3,7 @@ describe("CombatPartyFactory", function() {
   var combatPartyFactory;
 
   beforeEach(function() {
-    var mediator = td.function();
+    var mediator = Mediator.getInstance();
     combatPartyFactory = new CombatPartyFactory(mediator);
   });
   it("creates a new Combat Party when newCombatParty is called", function() {
@@ -13,10 +13,9 @@ describe("CombatPartyFactory", function() {
   });
 
   it("creates Combat Party utilizing existing mediator", function() {
-    var combatParty = combatPartyFactory.newCombatParty();
-    var x = combatParty.mediator;
+    // var combatParty = combatPartyFactory.mediator;
+    var newCombatParty = combatPartyFactory.newCombatParty();
 
-    // expect(x).toBe(true);
-    // expect(combatParty.mediator === mediator).toBe(true);
+  	expect(newCombatParty.mediator === mediator).toBe(true);
   });
 });

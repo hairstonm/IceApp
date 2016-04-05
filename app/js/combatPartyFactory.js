@@ -1,6 +1,6 @@
-var CombatPartyFactory = function(mediator){
-  this.mediator = mediator;
-  this.newCombatParty = function(){
-    return new CombatParty(1, 2, mediator, "hello");
+var CombatPartyFactory = function(){
+
+  this.newCombatParty = function(mediator){
+    return new CombatParty(10, 15, mediator, "Kraken");
   }
 }

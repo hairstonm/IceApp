@@ -2,7 +2,7 @@ angular.module("app").factory('game', ['listeners', function(listeners) {
 	var combatPartyFactory = new CombatPartyFactory();
 	var openArena = new OpenArena();
 	var closedArena = new ClosedArena();
-	var	mediator = new Mediator();
+	var	mediator = Mediator.getInstance();
 	var baseHealth = 15;
 	var attacker = new CombatParty(5, baseHealth, mediator, "Redshirt");
 	var defender = new CombatParty(4, baseHealth, mediator, "PuppyMonkeyBaby");

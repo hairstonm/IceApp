@@ -16,7 +16,7 @@ describe("Spice App", function(){
 		var baseHealth = 15;
 		combatPartyFactory = new CombatPartyFactory();
 		openArena = new OpenArena();
-		mediator = new Mediator();
+		mediator = Mediator.getInstance();
 		attacker = new CombatParty(5, baseHealth, mediator, "Redshirt");
 		defender = new CombatParty(4, baseHealth, mediator, "PuppyMonkeyBaby");
 		newDefender = new CombatParty(8, baseHealth, mediator, "The Kraken");

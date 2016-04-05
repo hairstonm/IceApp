@@ -3,7 +3,7 @@ describe("mediator", function(){
 	var attackListener;
 
 	beforeEach(function(){
-		mediator = new Mediator();
+		mediator = Mediator.getInstance();
 		attackListener = td.object('AttackListener');
 		defendListener = td.object('DefendListener');
 	});
@@ -14,8 +14,14 @@ describe("mediator", function(){
 
 		mediator.sendEvent("attack", "I attack!!!!");
 		mediator.sendEvent("defend", "I received damage!!!");
-		
+
 		td.verify(attackListener.receiveEvent("I attack!!!!"));
 		td.verify(defendListener.receiveEvent("I received damage!!!"));
 	});
-});	
+
+	it("returns a singleton instance of itself", function(){
+		var newMediator = Mediator.getInstance();
+
+		expect(newMediator === mediator).toBe(true);
+	});
+});
