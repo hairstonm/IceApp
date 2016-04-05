@@ -22,7 +22,7 @@ describe("Spice App", function(){
 		newDefender = new CombatParty(8, baseHealth, mediator, "The Kraken");
 		battle = new Battle(attacker, defender, combatPartyFactory);
 		arena = new Arena(openArena, closedArena, battle);
-		game = new Game(mediator, arena);
+		game = new Game(arena);
 		attackListener = td.object('AttackListener');
 		defenderListener = td.object('DefenderListener');
 		battleListener = td.object('BattleListener');

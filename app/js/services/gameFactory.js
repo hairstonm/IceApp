@@ -11,7 +11,7 @@ angular.module("app").factory('game', ['listeners', function(listeners) {
 	mediator.registerListener("attack", listeners.attack);
 	mediator.registerListener("defend", listeners.defend);
 	mediator.registerListener('dead', listeners.dead);
-	return new Game(mediator, arena);
+	return new Game(arena);
 }]);
 
 angular.module("app").factory('listeners', function(){
