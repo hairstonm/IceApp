@@ -1,11 +1,14 @@
 describe("CombatPartyFactory", function() {
   var combatPartyFactory;
   var mediator;
+  var $rootScope;
 
-
-  beforeEach(function() {
-    combatPartyFactory = new CombatPartyFactory(mediator);
-  });
+  beforeEach(inject(function($rootScope) {
+    combatPartyFactory = new CombatPartyFactory();
+    combatPartyFactory.scope = $rootScope.$new();
+    var mediator = td.object("Mediator");
+    combatPartyFactory.scope.mediator = mediator;
+  }));
 
   it("creates a new Combat Party when newCombatParty is called", function() {
     var combatParty = combatPartyFactory.newCombatParty();

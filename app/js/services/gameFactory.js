@@ -1,10 +1,13 @@
-angular.module("app").factory('game', function() {
+angular.module("app").factory('game', function($rootScope) {
 	var combatPartyFactory = new CombatPartyFactory();
+	combatPartyFactory.scope = $rootScope;
 	var openArena = new OpenArena();
 	var closedArena = new ClosedArena();
 	var baseHealth = 15;
-	var attacker = new CombatParty(5, baseHealth, "Redshirt");
-	var defender = new CombatParty(4, baseHealth, "PuppyMonkeyBaby");
+	var mediator = Mediator.getInstance();
+	$rootScope.mediator = mediator;
+	var attacker = new CombatParty(5, baseHealth, mediator, "Redshirt");
+	var defender = new CombatParty(4, baseHealth, mediator, "PuppyMonkeyBaby");
 	var battle = new Battle(attacker, defender, combatPartyFactory);
 	var	arena = new Arena(openArena, closedArena, battle);
 	return new Game(arena);
@@ -18,13 +21,15 @@ angular.module("app").factory('listeners', function(){
 	};
 });
 
-angular.module("app").factory('mediator',  ['listeners', function(listeners){
-	var mediator = Mediator.getInstance();
-	mediator.registerListener("attack", listeners.attack);
-	mediator.registerListener("defend", listeners.defend);
-	mediator.registerListener('dead', listeners.dead);
-	return mediator;
-}]);
+var registerListeners = function(listeners, $rootScope){
+	$rootScope.mediator.registerListener("attack", listeners.attack);
+	$rootScope.mediator.registerListener("defend", listeners.defend);
+	$rootScope.mediator.registerListener('dead', listeners.dead);
+}
+
+var assignScopeToMediators = function(mediator, $rootScope){
+	mediator.scope = $rootScope;
+}
 
 var assignScopeToListeners = function(listeners, $rootScope){
 	for(listener in listeners){
@@ -38,14 +43,14 @@ var defineToggleMissionStatus = function($rootScope){
 	}
 }
 
-angular.module("app").controller('gameIncrementer', ['$rootScope', '$interval', 'game', 'listeners', 'mediator',
-	function($rootScope, $interval, game, listeners, mediator) {
+angular.module("app").controller('gameIncrementer', ['$rootScope', '$interval', 'game', 'listeners',
+	function($rootScope, $interval, game, listeners) {
 		$rootScope.missionInProgress = false;
 		$rootScope.missionButtonText = "Start Mission";
 		defineToggleMissionStatus($rootScope);
 		$rootScope.missionLog = [];
 		$rootScope.game = game;
-		$rootScope.mediator = mediator;
+		registerListeners(listeners,$rootScope);
 		$interval(function(){
 			assignScopeToListeners(listeners,$rootScope);
 			game.increment()

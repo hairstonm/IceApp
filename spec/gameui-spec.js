@@ -15,7 +15,7 @@ describe("Game UI ", function(){
 	    $rootScope = _$rootScope_;
 	    gameInstance = _game_;
 	    listeners = _listeners_;
-  	})); 
+  	}));
 
 	beforeEach(function(){
 		element = $compile(missionString)($rootScope);
@@ -32,7 +32,7 @@ describe("Game UI ", function(){
 	it('starts mission', function(){
 		element.find("button").triggerHandler("click");
 		gameInstance.increment();
-		
+
 		expect($rootScope.missionLog.length).toBeGreaterThan(0);
 	});
 

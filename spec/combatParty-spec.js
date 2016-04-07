@@ -3,22 +3,13 @@ describe("combatParty", function(){
 	var defender;
 	var mediator;
 	var baseDamage;
-	var $rootScope;
-
-beforeEach(inject(function(_$rootScope_){
-	debugger
-		$rootScope = _$rootScope_;
-}));
 
 	beforeEach(function(){
-		debugger
 		baseDamage = 5;
 		baseHealth = 15;
 		mediator = td.object('Mediator');
 		attacker = new CombatParty(baseDamage, baseHealth, mediator,'Redshirt');
 		defender = td.object('CombatParty');
-		$rootScope.mediator = mediator;
-		$rootScope.$digest();
 	});
 
 	it("Defender is attacked!!!", function(){
