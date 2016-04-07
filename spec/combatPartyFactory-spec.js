@@ -1,11 +1,12 @@
 describe("CombatPartyFactory", function() {
-  var mediator;
   var combatPartyFactory;
+  var mediator;
+
 
   beforeEach(function() {
-    var mediator = Mediator.getInstance();
     combatPartyFactory = new CombatPartyFactory(mediator);
   });
+
   it("creates a new Combat Party when newCombatParty is called", function() {
     var combatParty = combatPartyFactory.newCombatParty();
 

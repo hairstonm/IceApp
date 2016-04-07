@@ -1,17 +1,17 @@
-var CombatParty = function(baseDamage, baseHealth, mediator, type){
-	this.mediator = mediator;
+var CombatParty = function(baseDamage, baseHealth, type){
 	this.attack = function(defender){
-		mediator.sendEvent("attack", new AttackMessage(baseDamage, type));
+		debugger;
+		this.scope.mediator.sendEvent("attack", new AttackMessage(baseDamage, type));
 		defender.receiveAttack(baseDamage);
 	};
 
 	this.receiveAttack = function(baseDamage){
 		this.health -= baseDamage;
 		if(this.health <= 0){
-			mediator.sendEvent("dead", new DeathMessage(type));
+			this.scope.mediator.sendEvent("dead", new DeathMessage(type));
 		}
 		else {
-			mediator.sendEvent("defend", new AttackMessage(baseDamage, type));
+			this.scope.mediator.sendEvent("defend", new AttackMessage(baseDamage, type));
 		};
 	};
 	this.health = baseHealth;
