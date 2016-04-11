@@ -17,7 +17,8 @@ angular.module("app").factory('listeners', function(){
 	return {
 		attack : new AttackListener(),
 		defend : new DefenderListener(),
-		dead : new DeathListener()
+		dead : new DeathListener(),
+		dead : new BattleListener()
 	};
 });
 

@@ -1,4 +1,4 @@
-describe("Game UI ", function(){
+describe("Game Directive ", function(){
 	var missionString = '<mission></mission>';
 	var $compile;
 	var $rootScope;
@@ -47,5 +47,15 @@ describe("Game UI ", function(){
 		gameInstance.increment();
 
 		expect($rootScope.missionLog.length).toEqual(4);
+	});
+
+	it('continues a mission when a combatant dies', function(){
+		element.find("button").triggerHandler("click");
+		gameInstance.increment();
+		gameInstance.increment();
+		gameInstance.increment();
+		gameInstance.increment();
+
+		expect($rootScope.missionLog.indexOf("Kraken")).toBeGreaterThan(-1);
 	});
 });
