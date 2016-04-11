@@ -20,10 +20,14 @@ describe("Game UI ", function(){
 	beforeEach(function(){
 		element = $compile(missionString)($rootScope);
 		$rootScope.missionLog = [];
+		$rootScope.mediator = Mediator.getInstance();
 		$rootScope.toggleMissionStatus = function(){
 			$rootScope.$broadcast('toggleMissionStatus');
 		}
 		$rootScope.missionInProgress = false;
+		$rootScope.mediator.registerListener("attack", listeners.attack);
+		$rootScope.mediator.registerListener("defend", listeners.defend);
+		$rootScope.mediator.registerListener('dead', listeners.dead);
 		listeners.attack.scope = $rootScope;
 		listeners.defend.scope = $rootScope;
 		$rootScope.$digest();

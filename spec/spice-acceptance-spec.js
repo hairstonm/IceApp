@@ -11,12 +11,19 @@ describe("Spice App", function(){
 	var defender;
 	var newDefender;
 	var combatPartyFactory;
+	var $rootScope;
+
+	beforeEach(inject(function(_$rootScope_){
+			$rootScope = _$rootScope_;
+		}));
 
 	beforeEach(function(){
 		var baseHealth = 15;
 		combatPartyFactory = new CombatPartyFactory();
+		combatPartyFactory.scope = $rootScope;
 		openArena = new OpenArena();
 		mediator = Mediator.getInstance();
+		$rootScope.mediator = mediator;
 		attacker = new CombatParty(5, baseHealth, mediator, "Redshirt");
 		defender = new CombatParty(4, baseHealth, mediator, "PuppyMonkeyBaby");
 		newDefender = new CombatParty(8, baseHealth, mediator, "The Kraken");
@@ -28,9 +35,10 @@ describe("Spice App", function(){
 		battleListener = td.object('BattleListener');
 		defenderDead = td.object('DeathMessage');
 		closedArena = td.object('ClosedArena');
-		mediator.registerListener("attack", attackListener);
-		mediator.registerListener("defend", defenderListener);
-		mediator.registerListener("dead", battleListener);
+		$rootScope.mediator.registerListener("attack", attackListener);
+		$rootScope.mediator.registerListener("defend", defenderListener);
+		$rootScope.mediator.registerListener("dead", battleListener);
+		$rootScope.$digest();
 	});
 
 	it("allows combatants to go on missions", function(){
