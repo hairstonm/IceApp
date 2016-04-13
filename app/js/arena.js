@@ -1,8 +1,8 @@
-var Arena = function(openArena, closedArena, battle){
+var Arena = function(openArena, closedArena){
 	this.currentArena = closedArena;
 
 	this.evaluateCombat = function(){
-		this.currentArena.evaluateCombat(battle);
+		this.currentArena.evaluateCombat();
 	};
 
 	this.activate = function(){

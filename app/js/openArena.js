@@ -1,6 +1,7 @@
-var OpenArena = function(){
-
-	this.evaluateCombat = function(battle){
-		battle.evaluateCombat();
+var OpenArena = function(battle){
+	this.battle = battle;
+	
+	this.evaluateCombat = function(){
+		this.battle.evaluateCombat();
 	};
 };

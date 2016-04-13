@@ -1,31 +1,35 @@
 angular.module("app").factory('game', function($rootScope) {
 	var combatPartyFactory = new CombatPartyFactory();
 	combatPartyFactory.scope = $rootScope;
-	var openArena = new OpenArena();
-	var closedArena = new ClosedArena();
+
 	var baseHealth = 15;
 	var mediator = Mediator.getInstance();
 	$rootScope.mediator = mediator;
 	var attacker = new CombatParty(5, baseHealth, mediator, "Redshirt");
 	var defender = new CombatParty(4, baseHealth, mediator, "PuppyMonkeyBaby");
 	var battle = new Battle(attacker, defender, combatPartyFactory);
-	var	arena = new Arena(openArena, closedArena, battle);
+	var openArena = new OpenArena(battle);
+	var closedArena = new ClosedArena(battle);
+	var	arena = new Arena(openArena, closedArena);
 	return new Game(arena);
 });
 
-angular.module("app").factory('listeners', function(){
-	return {
+// angular.module("app").factory('listeners', function(battle){
+// 	return {
+var createListeners = function(battle){
+		return {
 		attack : new AttackListener(),
 		defend : new DefenderListener(),
 		dead : new DeathListener(),
-		dead : new BattleListener()
+		battle : new BattleListener(battle)
 	};
-});
+};
 
 var registerListeners = function(listeners, $rootScope){
 	$rootScope.mediator.registerListener("attack", listeners.attack);
 	$rootScope.mediator.registerListener("defend", listeners.defend);
 	$rootScope.mediator.registerListener('dead', listeners.dead);
+	$rootScope.mediator.registerListener('battle', listeners.battle);
 }
 
 var assignScopeToMediators = function(mediator, $rootScope){
@@ -44,13 +48,14 @@ var defineToggleMissionStatus = function($rootScope){
 	}
 }
 
-angular.module("app").controller('gameIncrementer', ['$rootScope', '$interval', 'game', 'listeners',
-	function($rootScope, $interval, game, listeners) {
+angular.module("app").controller('gameIncrementer', ['$rootScope', '$interval', 'game',
+	function($rootScope, $interval, game) {
 		$rootScope.missionInProgress = false;
 		$rootScope.missionButtonText = "Start Mission";
 		defineToggleMissionStatus($rootScope);
 		$rootScope.missionLog = [];
 		$rootScope.game = game;
+		var listeners = createListeners(game.arena.currentArena.battle);
 		registerListeners(listeners,$rootScope);
 		$interval(function(){
 			assignScopeToListeners(listeners,$rootScope);

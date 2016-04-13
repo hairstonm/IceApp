@@ -2,38 +2,37 @@ describe("arena", function(){
 	var arena;
 	var openArena;
 	var closedArena;
-	var battle;
 
 	beforeEach(function(){
 		openArena = td.object('OpenArena');
 		closedArena = td.object('ClosedArena');
-		battle = td.object('Battle')
-		arena = new Arena(openArena, closedArena, battle);
+
+		arena = new Arena(openArena, closedArena);
 	});
 
 	it("activates an open arena", function(){
 		arena.activate();
 
-		arena.evaluateCombat(battle);
+		arena.evaluateCombat();
 
-		td.verify(openArena.evaluateCombat(battle));
+		td.verify(openArena.evaluateCombat());
 	});
 
 	it("starts with a closed arena", function(){
-		arena.evaluateCombat(battle);
+		arena.evaluateCombat();
 
-		td.verify(closedArena.evaluateCombat(battle));
+		td.verify(closedArena.evaluateCombat());
 	});
 
 	it("deactivates an open arena", function(){
 		arena.activate();
-		arena.evaluateCombat(battle);
+		arena.evaluateCombat();
 
-		td.verify(openArena.evaluateCombat(battle));
+		td.verify(openArena.evaluateCombat());
 
 		arena.deactivate();
-		arena.evaluateCombat(battle);
+		arena.evaluateCombat();
 
-		td.verify(closedArena.evaluateCombat(battle));
+		td.verify(closedArena.evaluateCombat());
 	})
 });

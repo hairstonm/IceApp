@@ -57,4 +57,12 @@ describe("combatParty", function(){
 	});
 
 
+		it("sends battle message when combat party dies", function(){
+			var captor = td.matchers.captor();
+			attacker.receiveAttack(baseDamage*10);
+
+			td.verify(mediator.sendEvent("battle", captor.capture()));
+		});
+
+
 });

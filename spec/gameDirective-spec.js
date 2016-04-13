@@ -5,22 +5,29 @@ describe("Game Directive ", function(){
 	var gameInstance;
 	var listeners;
 	var element;
+	var battle;
 
 	beforeEach(function(){
 		module('app');
 	});
 
-	beforeEach(inject(function(_$compile_, _$rootScope_, _game_, _listeners_){
+	beforeEach(inject(function(_$compile_, _$rootScope_, _game_){
 	    $compile = _$compile_;
 	    $rootScope = _$rootScope_;
 	    gameInstance = _game_;
-	    listeners = _listeners_;
   	}));
 
 	beforeEach(function(){
+		battle = td.object("Battle");
 		element = $compile(missionString)($rootScope);
 		$rootScope.missionLog = [];
 		$rootScope.mediator = Mediator.getInstance();
+		listeners = {
+				attack : new AttackListener(),
+				defend : new DefenderListener(),
+				dead : new DeathListener(),
+				battle : new BattleListener(battle)
+		};
 		$rootScope.toggleMissionStatus = function(){
 			$rootScope.$broadcast('toggleMissionStatus');
 		}
@@ -28,6 +35,7 @@ describe("Game Directive ", function(){
 		$rootScope.mediator.registerListener("attack", listeners.attack);
 		$rootScope.mediator.registerListener("defend", listeners.defend);
 		$rootScope.mediator.registerListener('dead', listeners.dead);
+		$rootScope.mediator.registerListener('battle', listeners.battle);
 		listeners.attack.scope = $rootScope;
 		listeners.defend.scope = $rootScope;
 		$rootScope.$digest();
@@ -56,6 +64,7 @@ describe("Game Directive ", function(){
 		gameInstance.increment();
 		gameInstance.increment();
 
-		expect($rootScope.missionLog.indexOf("Kraken")).toBeGreaterThan(-1);
+		debugger;
+		expect($rootScope.missio	nLog.indexOf("Kraken")).toBeGreaterThan(-1);
 	});
 });

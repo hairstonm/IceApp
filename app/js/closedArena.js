@@ -1,5 +1,6 @@
-var ClosedArena = function(){
-
-	this.evaluateCombat = function(attacker, defender){
+var ClosedArena = function(battle){
+	this.battle = battle;
+	
+	this.evaluateCombat = function(){
 	};
 };
