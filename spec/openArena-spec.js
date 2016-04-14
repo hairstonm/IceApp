@@ -4,14 +4,14 @@ describe('OpenArena', function(){
 	var defender;
 
 	beforeEach(function(){
-		arena = new OpenArena();
+		battle = td.object('Battle');
+		arena = new OpenArena(battle);
 		attacker = td.object('CombatParty');
 		defender = td.object('CombatParty');
-		battle = td.object('Battle');
 	});
 
 	it("evaluates combat in a battle", function(){
-		arena.evaluateCombat(battle);
+		arena.evaluateCombat();
 		td.verify(battle.evaluateCombat());
 	});
 });

@@ -6,6 +6,8 @@ describe("Spice App", function(){
 	var closedArena;
 	var attackListener;
 	var defenderListener;
+	var battleListener;
+	var deathListener;
 	var battle;
 	var attacker;
 	var defender;
@@ -20,24 +22,25 @@ describe("Spice App", function(){
 	beforeEach(function(){
 		var baseHealth = 15;
 		combatPartyFactory = new CombatPartyFactory();
-		combatPartyFactory.scope = $rootScope;
-		openArena = new OpenArena();
 		mediator = Mediator.getInstance();
 		$rootScope.mediator = mediator;
+		combatPartyFactory.scope = $rootScope;
 		attacker = new CombatParty(5, baseHealth, mediator, "Redshirt");
 		defender = new CombatParty(4, baseHealth, mediator, "PuppyMonkeyBaby");
-		newDefender = new CombatParty(8, baseHealth, mediator, "The Kraken");
 		battle = new Battle(attacker, defender, combatPartyFactory);
-		arena = new Arena(openArena, closedArena, battle);
+		openArena = new OpenArena(battle);
+		arena = new Arena(openArena, closedArena);
 		game = new Game(arena);
 		attackListener = td.object('AttackListener');
 		defenderListener = td.object('DefenderListener');
 		battleListener = td.object('BattleListener');
+		deathListener = td.object('DeathListener');
 		defenderDead = td.object('DeathMessage');
 		closedArena = td.object('ClosedArena');
 		$rootScope.mediator.registerListener("attack", attackListener);
 		$rootScope.mediator.registerListener("defend", defenderListener);
-		$rootScope.mediator.registerListener("dead", battleListener);
+		$rootScope.mediator.registerListener("battle", battleListener);
+		$rootScope.mediator.registerListener("dead", deathListener);
 		$rootScope.$digest();
 	});
 
@@ -56,7 +59,7 @@ describe("Spice App", function(){
 		game.increment();
 		game.increment();
 
-		td.verify(battleListener.receiveEvent(captor.capture()));
+		td.verify(deathListener.receiveEvent(captor.capture()));
 		expect(captor.value.type).toEqual("PuppyMonkeyBaby");
 	});
 
