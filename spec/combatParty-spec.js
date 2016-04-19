@@ -55,14 +55,4 @@ describe("combatParty", function(){
 		td.verify(mediator.sendEvent("dead", captor.capture()));
 		expect(captor.value.type).toEqual("Redshirt");
 	});
-
-
-		it("sends battle message when combat party dies", function(){
-			var captor = td.matchers.captor();
-			attacker.receiveAttack(baseDamage*10);
-
-			td.verify(mediator.sendEvent("battle", captor.capture()));
-		});
-
-
 });

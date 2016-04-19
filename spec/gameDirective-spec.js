@@ -21,6 +21,7 @@ describe("Game Directive ", function() {
         element = $compile(missionString)($rootScope);
         $rootScope.missionLog = [];
         $rootScope.mediator = Mediator.getInstance();
+        debugger
         listeners = {
             attack: new AttackListener(),
             defend: new DefenderListener(),
@@ -34,11 +35,11 @@ describe("Game Directive ", function() {
         $rootScope.mediator.registerListener("attack", listeners.attack);
         $rootScope.mediator.registerListener("defend", listeners.defend);
         $rootScope.mediator.registerListener('dead', listeners.dead);
-        $rootScope.mediator.registerListener('battle', listeners.battle);
+        $rootScope.mediator.registerListener('dead', listeners.battle);
         listeners.attack.scope = $rootScope;
         listeners.defend.scope = $rootScope;
 				listeners.dead.scope = $rootScope;
-				listeners.battle.scope = $rootScope;
+        listeners.battle.scope = $rootScope;
         $rootScope.$digest();
     });
 

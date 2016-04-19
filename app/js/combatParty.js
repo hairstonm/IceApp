@@ -8,7 +8,6 @@ var CombatParty = function(baseDamage, baseHealth, mediator, type){
 		this.health -= baseDamage;
 		if(this.health <= 0){
 			mediator.sendEvent("dead", new DeathMessage(type));
-			mediator.sendEvent("battle", function(){});
 		}
 		else {
 		 mediator.sendEvent("defend", new AttackMessage(baseDamage, type));

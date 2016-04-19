@@ -14,14 +14,12 @@ angular.module("app").factory('game', function($rootScope) {
 	return new Game(arena);
 });
 
-// angular.module("app").factory('listeners', function(battle){
-// 	return {
 var createListeners = function(battle){
 		return {
 		attack : new AttackListener(),
 		defend : new DefenderListener(),
 		dead : new DeathListener(),
-		battle : new BattleListener(battle)
+		dead : new BattleListener(battle)
 	};
 };
 
@@ -29,7 +27,7 @@ var registerListeners = function(listeners, $rootScope){
 	$rootScope.mediator.registerListener("attack", listeners.attack);
 	$rootScope.mediator.registerListener("defend", listeners.defend);
 	$rootScope.mediator.registerListener('dead', listeners.dead);
-	$rootScope.mediator.registerListener('battle', listeners.battle);
+	$rootScope.mediator.registerListener('dead', listeners.battle);
 }
 
 var assignScopeToMediators = function(mediator, $rootScope){

@@ -1,30 +1,35 @@
-var Mediator = (function(){
-	var listeners = {};
-	var instance;
+var Mediator = (function() {
+  var listeners = {};
+  var instance;
 
-	function createInstance(){
-		var mediator = {
+  function createInstance() {
+    var mediator = {
+      registerListener: function(messageType, listener) {
+      if (messageType in listeners) {
+					listeners[messageType].push(listener);
+			  } else {
+					listeners[messageType] = new Array(listener);
+				}
+      },
 
-			registerListener: function(messageType, listener){
-				listeners[messageType] = listener;
-			},
+      sendEvent: function(messageType, message) {
+				listeners[messageType].forEach(function(listener){
+					listener.receiveEvent(message);
+				});
+      }
 
-			sendEvent: function(messageType, message){
-				listeners[messageType].receiveEvent(message);
-			}
-
-		}
-		return mediator;
-	};
+    }
+    return mediator;
+  };
 
 
-	return {
-		getInstance: function(){
-			if (!instance) {
-	      instance = createInstance();
-	    }
-	      return instance;
-		}
+  return {
+    getInstance: function() {
+      if (!instance) {
+        instance = createInstance();
+      }
+      return instance;
+    }
 
-	};
+  };
 })();
