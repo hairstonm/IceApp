@@ -19,7 +19,7 @@ var createListeners = function(battle){
 		attack : new AttackListener(),
 		defend : new DefenderListener(),
 		dead : new DeathListener(),
-		dead : new BattleListener(battle)
+		battle : new BattleListener(battle)
 	};
 };
 

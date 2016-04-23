@@ -17,7 +17,6 @@ describe("CombatPartyFactory", function() {
   });
 
   it("creates Combat Party utilizing existing mediator", function() {
-    // var combatParty = combatPartyFactory.mediator;
     var newCombatParty = combatPartyFactory.newCombatParty();
 
   	expect(newCombatParty.mediator === mediator).toBe(true);

@@ -21,7 +21,6 @@ describe("Game Directive ", function() {
         element = $compile(missionString)($rootScope);
         $rootScope.missionLog = [];
         $rootScope.mediator = Mediator.getInstance();
-        debugger
         listeners = {
             attack: new AttackListener(),
             defend: new DefenderListener(),
@@ -57,14 +56,5 @@ describe("Game Directive ", function() {
         gameInstance.increment();
 
         expect($rootScope.missionLog.length).toEqual(4);
-    });
-
-    it('continues a mission when a combatant dies', function() {
-        element.find("button").triggerHandler("click");
-        gameInstance.increment();
-        gameInstance.increment();
-        gameInstance.increment();
-        gameInstance.increment();
-        expect($rootScope.missionLog.indexOf("Kraken attacked for 10 points of damage")).toBeGreaterThan(-1);
     });
 });
