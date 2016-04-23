@@ -1,4 +1,4 @@
-describe("combatParty", function(){
+describe("CombatParty", function(){
 	var attacker;
 	var defender;
 	var mediator;
@@ -9,7 +9,7 @@ describe("combatParty", function(){
 		baseHealth = 15;
 		mediator = td.object('Mediator');
 		attacker = new CombatParty(baseDamage, baseHealth, mediator,'Redshirt', "attacker");
-		defender = td.object('CombatParty');
+		defender = new CombatParty(baseDamage, baseHealth, mediator,"Kraken", "defender");
 	});
 
 	it("Defender is attacked!!!", function(){
@@ -58,9 +58,17 @@ describe("combatParty", function(){
 
 	it("sends attackerDeath message when attacker dies", function() {
 		var captor = td.matchers.captor();
-		attacker.receiveAttack(baseDamage*100);
+		attacker.receiveAttack(baseDamage * 100);
 
 		td.verify(mediator.sendEvent("attackerDeath", captor.capture()));
 		expect(captor.value.type).toEqual("Redshirt");
+	});
+
+	it("sends defenderDeath messafe when defender dies", function(){
+		var captor = td.matchers.captor();
+		defender.receiveAttack(baseDamage * 9000);
+
+		td.verify(mediator.sendEvent("defenderDeath", captor.capture()));
+		expect(captor.value.type).toEqual("Kraken");
 	});
 });

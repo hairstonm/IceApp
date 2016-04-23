@@ -1,13 +1,14 @@
 angular.module("app").factory('game', function($rootScope) {
-	var combatPartyFactory = new CombatPartyFactory();
-	combatPartyFactory.scope = $rootScope;
+	var randomizer =  new Randomizer();
+	var bestiary = new Bestiary(randomizer);
+	bestiary.scope = $rootScope;
 
 	var baseHealth = 15;
 	var mediator = Mediator.getInstance();
 	$rootScope.mediator = mediator;
 	var attacker = new CombatParty(5, baseHealth, mediator, "Redshirt", "attacker");
 	var defender = new CombatParty(4, baseHealth, mediator, "PuppyMonkeyBaby", "defender");
-	var battle = new Battle(attacker, defender, combatPartyFactory);
+	var battle = new Battle(attacker, defender, bestiary);
 	var openArena = new OpenArena(battle);
 	var closedArena = new ClosedArena(battle);
 	var	arena = new Arena(openArena, closedArena);

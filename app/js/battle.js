@@ -1,7 +1,7 @@
-var Battle = function(attacker, defender, combatPartyFactory){
+var Battle = function(attacker, defender, bestiary){
   this.attacker = attacker;
   this.defender = defender;
-  this.combatPartyFactory = combatPartyFactory;
+  this.bestiary = bestiary;
 
   this.evaluateCombat = function(){
     attacker.attack(defender);
@@ -9,6 +9,6 @@ var Battle = function(attacker, defender, combatPartyFactory){
   };
 
   this.loadNewDefender = function(){
-    defender = combatPartyFactory.newCombatParty();
+    defender = bestiary.newCombatParty();
   };
 };

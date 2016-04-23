@@ -12,7 +12,7 @@ describe("Spice App", function(){
 	var attacker;
 	var defender;
 	var newDefender;
-	var combatPartyFactory;
+	var bestiary;
 	var $rootScope;
 
 	beforeEach(inject(function(_$rootScope_){
@@ -21,13 +21,14 @@ describe("Spice App", function(){
 
 	beforeEach(function(){
 		var baseHealth = 15;
-		combatPartyFactory = new CombatPartyFactory();
+		var randomizer = new Randomizer();
+		bestiary = new Bestiary(randomizer);
 		mediator = Mediator.getInstance();
 		$rootScope.mediator = mediator;
-		combatPartyFactory.scope = $rootScope;
+		bestiary.scope = $rootScope;
 		attacker = new CombatParty(5, baseHealth, mediator, "Redshirt", "attacker");
 		defender = new CombatParty(4, baseHealth, mediator, "PuppyMonkeyBaby", "defender");
-		battle = new Battle(attacker, defender, combatPartyFactory);
+		battle = new Battle(attacker, defender, bestiary);
 		openArena = new OpenArena(battle);
 		arena = new Arena(openArena, closedArena);
 		game = new Game(arena);

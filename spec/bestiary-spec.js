@@ -1,23 +1,24 @@
-describe("CombatPartyFactory", function() {
-  var combatPartyFactory;
+describe("Bestiary", function() {
+  var bestiary;
   var mediator;
   var $rootScope;
 
   beforeEach(inject(function($rootScope) {
-    combatPartyFactory = new CombatPartyFactory();
-    combatPartyFactory.scope = $rootScope.$new();
+    randomizer = {randomize: function(){return 3}}
+    bestiary = new Bestiary(randomizer);
+    bestiary.scope = $rootScope.$new();
     var mediator = td.object("Mediator");
-    combatPartyFactory.scope.mediator = mediator;
+    bestiary.scope.mediator = mediator;
   }));
 
   it("creates a new Combat Party when newCombatParty is called", function() {
-    var combatParty = combatPartyFactory.newCombatParty();
+    var combatParty = bestiary.newCombatParty();
 
     expect(combatParty instanceof CombatParty).toBe(true);
   });
 
   it("creates Combat Party utilizing existing mediator", function() {
-    var newCombatParty = combatPartyFactory.newCombatParty();
+    var newCombatParty = bestiary.newCombatParty();
 
   	expect(newCombatParty.mediator === mediator).toBe(true);
   });
