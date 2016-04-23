@@ -6,6 +6,7 @@ var Game = function(arena){
 	};
 
 	this.startMission = function(){
+		
 		arena.activate();
 	};
 

@@ -7,8 +7,9 @@ describe("battle", function() {
   beforeEach(function() {
     attacker = td.object("CombatParty");
     defender = td.object("CombatParty");
-    combatPartyFactory = td.object("CombatPartyFactory");
-    battle = new Battle(attacker, defender, combatPartyFactory);
+    battle = new Battle();
+    battle.loadNewDefender(defender);
+    battle.loadNewAttacker(attacker);
   });
 
   it("uses attacker to attack defender", function() {
@@ -21,11 +22,5 @@ describe("battle", function() {
     battle.evaluateCombat();
 
     td.verify(defender.attack(attacker));
-  });
-
-  it("loads new defender when defender dies", function() {
-    battle.loadNewDefender();
-
-    td.verify(combatPartyFactory.newCombatParty());
   });
 });

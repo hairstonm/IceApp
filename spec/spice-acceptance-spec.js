@@ -14,6 +14,7 @@ describe("Spice App", function(){
 	var newDefender;
 	var bestiary;
 	var $rootScope;
+	var cloningFacility;
 
 	beforeEach(inject(function(_$rootScope_){
 			$rootScope = _$rootScope_;
@@ -21,17 +22,18 @@ describe("Spice App", function(){
 
 	beforeEach(function(){
 		var baseHealth = 15;
-		var randomizer = new Randomizer();
-		bestiary = new Bestiary(randomizer);
+		var randomizer = {randomize: function(){return 4}};
+		battle = new Battle();
+		cloningFacility = new CloningFacility(battle);
+		bestiary = new Bestiary(randomizer, battle);
 		mediator = Mediator.getInstance();
 		$rootScope.mediator = mediator;
 		bestiary.scope = $rootScope;
-		attacker = new CombatParty(5, baseHealth, mediator, "Redshirt", "attacker");
-		defender = new CombatParty(4, baseHealth, mediator, "PuppyMonkeyBaby", "defender");
-		battle = new Battle(attacker, defender, bestiary);
 		openArena = new OpenArena(battle);
 		arena = new Arena(openArena, closedArena);
 		game = new Game(arena);
+		bestiary.receiveEvent();
+		cloningFacility.receiveEvent();
 		attackListener = td.object('AttackListener');
 		defenderListener = td.object('DefenderListener');
 		battleListener = td.object('BattleListener');
@@ -43,7 +45,8 @@ describe("Spice App", function(){
 		$rootScope.mediator.registerListener("battle", battleListener);
 		$rootScope.mediator.registerListener("attackerDeath", deathListener);
 		$rootScope.mediator.registerListener("defenderDeath", deathListener);
-
+		$rootScope.mediator.registerListener("attackerDeath", cloningFacility);
+		$rootScope.mediator.registerListener("defenderDeath", bestiary);
 		$rootScope.$digest();
 	});
 
@@ -51,8 +54,8 @@ describe("Spice App", function(){
 		game.startMission();
 		game.increment();
 
-		td.verify(attackListener.receiveEvent(td.matchers.anything()), {times: 2});
-		td.verify(defenderListener.receiveEvent(td.matchers.anything()), {times: 2});
+		td.verify(attackListener.receiveEvent(td.matchers.anything()));
+		td.verify(defenderListener.receiveEvent(td.matchers.anything()));
 	});
 
 	it("allows attacker to win a battle", function(){
@@ -63,7 +66,7 @@ describe("Spice App", function(){
 		game.increment();
 
 		td.verify(deathListener.receiveEvent(captor.capture()));
-		expect(captor.value.type).toEqual("PuppyMonkeyBaby");
+		expect(captor.value.type).toEqual("Trump");
 	});
 
 	it("battle loads new defender when attacker kills defender", function(){

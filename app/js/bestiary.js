@@ -1,10 +1,14 @@
-var Bestiary = function(randomizer){
-  this.newCombatParty = function(){
-    var bestiary = [new CombatParty(10, 15, this.scope.mediator, "Kraken"),
-                    new CombatParty(5, 10, this.scope.mediator, "PuppyMonkeyBaby"),
-                    new CombatParty(15, 25, this.scope.mediator, "ChickenWomanDuckThing"),
-                    new CombatParty(6, 18, this.scope.mediator, "CJJJM"),
-                    new CombatParty(1, 1, this.scope.mediator, "Trump")];
-    return bestiary[randomizer.randomize(bestiary)];
+var Bestiary = function(randomizer, battle){
+
+  this.receiveEvent = function(message) {
+      var newCombatParty = function(){
+        var bestiary = [new CombatParty(10, 15, Mediator.getInstance(), "Kraken", 'defender'),
+        new CombatParty(5, 10, Mediator.getInstance(), "PuppyMonkeyBaby", 'defender'),
+        new CombatParty(15, 25, Mediator.getInstance(), "ChickenWomanDuckThing", 'defender'),
+        new CombatParty(6, 18, Mediator.getInstance(), "CJJJM", 'defender'),
+        new CombatParty(1, 1, Mediator.getInstance(), "Trump", 'defender')];
+        return bestiary[randomizer.randomize(bestiary.length)];
+      }
+      battle.loadNewDefender(newCombatParty());
   }
 }

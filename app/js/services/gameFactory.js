@@ -1,35 +1,43 @@
-angular.module("app").factory('game', function($rootScope) {
-	var randomizer =  new Randomizer();
-	var bestiary = new Bestiary(randomizer);
-	bestiary.scope = $rootScope;
-
+angular.module("app").factory('game', ['$rootScope', 'battle', function($rootScope, battle) {
 	var baseHealth = 15;
 	var mediator = Mediator.getInstance();
 	$rootScope.mediator = mediator;
-	var attacker = new CombatParty(5, baseHealth, mediator, "Redshirt", "attacker");
-	var defender = new CombatParty(4, baseHealth, mediator, "PuppyMonkeyBaby", "defender");
-	var battle = new Battle(attacker, defender, bestiary);
 	var openArena = new OpenArena(battle);
 	var closedArena = new ClosedArena(battle);
 	var	arena = new Arena(openArena, closedArena);
 	return new Game(arena);
+}]);
+
+angular.module("app").service('battle', function() {
+	return new Battle();
 });
 
-var createListeners = function(battle){
+angular.module("app").factory('bestiary', ['battle', function(battle) {
+	return new Bestiary(new Randomizer(), battle);
+}]);
+
+angular.module("app").factory('cloningFacility', ['battle', function(battle) {
+	return new CloningFacility(battle);
+}]);
+
+var createListeners = function(battle, bestiary, cloningFacility){
 		return {
 		attack : new AttackListener(),
 		defend : new DefenderListener(),
 		dead : new DeathListener(),
-		battle : new BattleListener(battle)
+		battle : new BattleListener(battle),
+		bestiary: bestiary,
+		cloningFacility: cloningFacility
 	};
 };
 
 var registerListeners = function(listeners, $rootScope){
-	var deathListener = new DeathListener();
-	$rootScope.mediator.registerListener("attack", new AttackListener());
-	$rootScope.mediator.registerListener("defend", new DefenderListener());
-	$rootScope.mediator.registerListener('attackerDeath', deathListener);
-	$rootScope.mediator.registerListener('defenderDeath', deathListener);
+	$rootScope.mediator.registerListener("attack", listeners.attack);
+	$rootScope.mediator.registerListener("defend", listeners.defend);
+	$rootScope.mediator.registerListener('defenderDeath', listeners.dead);
+	$rootScope.mediator.registerListener('defenderDeath', listeners.bestiary);
+	$rootScope.mediator.registerListener('attackerDeath', listeners.dead);
+	$rootScope.mediator.registerListener('attackerDeath', listeners.cloningFacility);
 }
 
 var assignScopeToMediators = function(mediator, $rootScope){
@@ -48,14 +56,17 @@ var defineToggleMissionStatus = function($rootScope){
 	}
 }
 
-angular.module("app").controller('gameIncrementer', ['$rootScope', '$interval', 'game',
-	function($rootScope, $interval, game) {
+angular.module("app").controller('gameIncrementer', ['$rootScope', '$interval', 'game', 'bestiary', 'cloningFacility', 'battle',
+	function($rootScope, $interval, game, bestiary, cloningFacility, battle) {
 		$rootScope.missionInProgress = false;
 		$rootScope.missionButtonText = "Start Mission";
 		defineToggleMissionStatus($rootScope);
 		$rootScope.missionLog = [];
 		$rootScope.game = game;
+		var listeners = createListeners(battle, bestiary, cloningFacility);
 		registerListeners(listeners,$rootScope);
+		bestiary.receiveEvent();
+		cloningFacility.receiveEvent()
 		$interval(function(){
 			assignScopeToListeners(listeners,$rootScope);
 			game.increment()
