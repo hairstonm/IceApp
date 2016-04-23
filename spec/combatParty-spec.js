@@ -8,7 +8,7 @@ describe("combatParty", function(){
 		baseDamage = 5;
 		baseHealth = 15;
 		mediator = td.object('Mediator');
-		attacker = new CombatParty(baseDamage, baseHealth, mediator,'Redshirt');
+		attacker = new CombatParty(baseDamage, baseHealth, mediator,'Redshirt', "attacker");
 		defender = td.object('CombatParty');
 	});
 
@@ -48,11 +48,19 @@ describe("combatParty", function(){
 		expect(captor.value.type).toEqual("Redshirt");
 	});
 
-	it("sends death message when combat party dies", function(){
-		var captor = td.matchers.captor();
-		attacker.receiveAttack(baseDamage*10);
+	// it("sends death message when combat party dies", function(){
+	// 	var captor = td.matchers.captor();
+	// 	attacker.receiveAttack(baseDamage*10);
+	//
+	// 	td.verify(mediator.sendEvent("dead", captor.capture()));
+	// 	expect(captor.value.type).toEqual("Redshirt");
+	// });
 
-		td.verify(mediator.sendEvent("dead", captor.capture()));
+	it("sends attackerDeath message when attacker dies", function() {
+		var captor = td.matchers.captor();
+		attacker.receiveAttack(baseDamage*100);
+
+		td.verify(mediator.sendEvent("attackerDeath", captor.capture()));
 		expect(captor.value.type).toEqual("Redshirt");
 	});
 });

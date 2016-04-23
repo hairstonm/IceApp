@@ -5,8 +5,8 @@ angular.module("app").factory('game', function($rootScope) {
 	var baseHealth = 15;
 	var mediator = Mediator.getInstance();
 	$rootScope.mediator = mediator;
-	var attacker = new CombatParty(5, baseHealth, mediator, "Redshirt");
-	var defender = new CombatParty(4, baseHealth, mediator, "PuppyMonkeyBaby");
+	var attacker = new CombatParty(5, baseHealth, mediator, "Redshirt", "attacker");
+	var defender = new CombatParty(4, baseHealth, mediator, "PuppyMonkeyBaby", "defender");
 	var battle = new Battle(attacker, defender, combatPartyFactory);
 	var openArena = new OpenArena(battle);
 	var closedArena = new ClosedArena(battle);
@@ -24,10 +24,11 @@ var createListeners = function(battle){
 };
 
 var registerListeners = function(listeners, $rootScope){
-	$rootScope.mediator.registerListener("attack", listeners.attack);
-	$rootScope.mediator.registerListener("defend", listeners.defend);
-	$rootScope.mediator.registerListener('dead', listeners.dead);
-	$rootScope.mediator.registerListener('dead', listeners.battle);
+	var deathListener = new DeathListener();
+	$rootScope.mediator.registerListener("attack", new AttackListener());
+	$rootScope.mediator.registerListener("defend", new DefenderListener());
+	$rootScope.mediator.registerListener('attackerDeath', deathListener);
+	$rootScope.mediator.registerListener('defenderDeath', deathListener);
 }
 
 var assignScopeToMediators = function(mediator, $rootScope){
@@ -53,7 +54,6 @@ angular.module("app").controller('gameIncrementer', ['$rootScope', '$interval', 
 		defineToggleMissionStatus($rootScope);
 		$rootScope.missionLog = [];
 		$rootScope.game = game;
-		var listeners = createListeners(game.arena.currentArena.battle);
 		registerListeners(listeners,$rootScope);
 		$interval(function(){
 			assignScopeToListeners(listeners,$rootScope);

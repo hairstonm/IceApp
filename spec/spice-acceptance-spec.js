@@ -25,8 +25,8 @@ describe("Spice App", function(){
 		mediator = Mediator.getInstance();
 		$rootScope.mediator = mediator;
 		combatPartyFactory.scope = $rootScope;
-		attacker = new CombatParty(5, baseHealth, mediator, "Redshirt");
-		defender = new CombatParty(4, baseHealth, mediator, "PuppyMonkeyBaby");
+		attacker = new CombatParty(5, baseHealth, mediator, "Redshirt", "attacker");
+		defender = new CombatParty(4, baseHealth, mediator, "PuppyMonkeyBaby", "defender");
 		battle = new Battle(attacker, defender, combatPartyFactory);
 		openArena = new OpenArena(battle);
 		arena = new Arena(openArena, closedArena);
@@ -40,7 +40,9 @@ describe("Spice App", function(){
 		$rootScope.mediator.registerListener("attack", attackListener);
 		$rootScope.mediator.registerListener("defend", defenderListener);
 		$rootScope.mediator.registerListener("battle", battleListener);
-		$rootScope.mediator.registerListener("dead", deathListener);
+		$rootScope.mediator.registerListener("attackerDeath", deathListener);
+		$rootScope.mediator.registerListener("defenderDeath", deathListener);
+
 		$rootScope.$digest();
 	});
 
