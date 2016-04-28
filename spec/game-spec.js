@@ -2,10 +2,12 @@ describe("game", function(){
 	var game;
 	var arena;
 	var redshirt;
+	var researchFacility;
 
 	beforeEach(function(){
 		arena = td.object('Arena');
-		game = new Game(arena);
+		researchFacility = td.object('ResearchFacility');
+		game = new Game(arena, researchFacility);
 	});
 
 	it("evaluateCombat is called when game increments", function(){
