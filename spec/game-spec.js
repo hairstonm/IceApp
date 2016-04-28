@@ -25,4 +25,10 @@ describe("game", function(){
 
 		td.verify(arena.deactivate());
 	});
+
+	it("researches new armor", function(){
+		game.research("armor");
+
+		td.verify(researchFacility.activate("armor"));
+	});
 });
