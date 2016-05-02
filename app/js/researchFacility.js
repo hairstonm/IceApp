@@ -2,7 +2,7 @@ var ResearchFacility = function(){
   this.armor = 0;
 
    this.activate = function(researchType){
-     this.armor += 1;
+     eval("this." +researchType+ " += 1");
+     Mediator.getInstance().sendEvent("modifer", "ModifierMessage");
    };
-
 };
