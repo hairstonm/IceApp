@@ -1,8 +1,8 @@
-var ResearchFacility = function(){
+var ResearchFacility = function(mediator){
   this.armor = 0;
 
    this.activate = function(researchType){
      eval("this." +researchType+ " += 1");
-     Mediator.getInstance().sendEvent("modifer", "ModifierMessage");
+     mediator.sendEvent("modifier", new ModifierMessage(researchType));
    };
 };

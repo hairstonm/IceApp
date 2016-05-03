@@ -47,6 +47,7 @@ describe("Spice App", function(){
 		$rootScope.mediator.registerListener("defenderDeath", deathListener);
 		$rootScope.mediator.registerListener("attackerDeath", cloningFacility);
 		$rootScope.mediator.registerListener("defenderDeath", bestiary);
+		$rootScope.mediator.registerListener()
 		$rootScope.$digest();
 	});
 
