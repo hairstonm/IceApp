@@ -15,12 +15,21 @@ describe("Spice App", function(){
 	var bestiary;
 	var $rootScope;
 	var cloningFacility;
+	var researchFacility;
+	var accumulator;
 
 	beforeEach(inject(function(_$rootScope_){
 			$rootScope = _$rootScope_;
 		}));
 
 	beforeEach(function(){
+		attackListener = td.object('AttackListener');
+		defenderListener = td.object('DefenderListener');
+		battleListener = td.object('BattleListener');
+		deathListener = td.object('DeathListener');
+		defenderDead = td.object('DeathMessage');
+		closedArena = td.object('ClosedArena');
+		accumulator = td.object('Accumulator');
 		var baseHealth = 15;
 		var randomizer = {randomize: function(){return 4}};
 		battle = new Battle();
@@ -31,15 +40,9 @@ describe("Spice App", function(){
 		bestiary.scope = $rootScope;
 		openArena = new OpenArena(battle);
 		arena = new Arena(openArena, closedArena);
-		game = new Game(arena);
+		game = new Game(arena, researchFacility, accumulator);
 		bestiary.receiveEvent();
 		cloningFacility.receiveEvent();
-		attackListener = td.object('AttackListener');
-		defenderListener = td.object('DefenderListener');
-		battleListener = td.object('BattleListener');
-		deathListener = td.object('DeathListener');
-		defenderDead = td.object('DeathMessage');
-		closedArena = td.object('ClosedArena');
 		$rootScope.mediator.registerListener("attack", attackListener);
 		$rootScope.mediator.registerListener("defend", defenderListener);
 		$rootScope.mediator.registerListener("battle", battleListener);
@@ -47,7 +50,6 @@ describe("Spice App", function(){
 		$rootScope.mediator.registerListener("defenderDeath", deathListener);
 		$rootScope.mediator.registerListener("attackerDeath", cloningFacility);
 		$rootScope.mediator.registerListener("defenderDeath", bestiary);
-		$rootScope.mediator.registerListener()
 		$rootScope.$digest();
 	});
 

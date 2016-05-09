@@ -3,11 +3,13 @@ describe("game", function(){
 	var arena;
 	var redshirt;
 	var researchFacility;
+	var accumulator;
 
 	beforeEach(function(){
 		arena = td.object('Arena');
+		accumulator = td.object('Accumulator');
 		researchFacility = td.object('ResearchFacility');
-		game = new Game(arena, researchFacility);
+		game = new Game(arena, researchFacility, accumulator);
 	});
 
 	it("evaluateCombat is called when game increments", function(){
@@ -33,4 +35,10 @@ describe("game", function(){
 
 		td.verify(researchFacility.activate("armor"));
 	});
+
+	it("generate resources when game increments", function(){
+		game.increment();
+
+		td.verify(accumulator.generateResources());
+	})
 });

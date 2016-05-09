@@ -1,0 +1,1 @@
+Selenium::WebDriver::Firefox::Binary.path='C:\Program Files (x86)\NW FF\firefox.exe'
