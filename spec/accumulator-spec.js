@@ -2,11 +2,11 @@ describe("accumulator", function(){
 
     var resources = td.object("Resources");
     var accumulator;
-
+    var scientists = 1;
     it('generates one science with one science officer', function(){
-       accumulator = new Accumulator();
+       accumulator = new Accumulator(resources);
 
-      accumulator.generateResources();
+      accumulator.generateScience(scientists);
 
       td.verify(resources.addScience(1));
     });

@@ -1,11 +1,10 @@
-var Game = function(arena, researchFacility, accumulator){
+var Game = function(arena, researchFacility){
 	this.arena = arena;
 	this.researchFacility = researchFacility;
-	this.accumulator = accumulator;
 
 	this.increment = function(){
 		arena.evaluateCombat();
-		generateResources();
+		researchFacility.generateScience();
 	};
 
 	this.startMission = function(){
@@ -20,8 +19,4 @@ var Game = function(arena, researchFacility, accumulator){
 	this.research = function(researchType){
 		researchFacility.activate(researchType);
 	};
-
-	this.generateResources = function(){
-		accumulator.generateScience(researchFacility.scientists);
-	}
 }

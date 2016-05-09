@@ -17,7 +17,7 @@ describe("Spice App", function(){
 	var cloningFacility;
 	var researchFacility;
 	var accumulator;
-
+	var resources;
 	beforeEach(inject(function(_$rootScope_){
 			$rootScope = _$rootScope_;
 		}));
@@ -29,7 +29,7 @@ describe("Spice App", function(){
 		deathListener = td.object('DeathListener');
 		defenderDead = td.object('DeathMessage');
 		closedArena = td.object('ClosedArena');
-		accumulator = td.object('Accumulator');
+		var scientists = 0
 		var baseHealth = 15;
 		var randomizer = {randomize: function(){return 4}};
 		battle = new Battle();
@@ -38,9 +38,12 @@ describe("Spice App", function(){
 		mediator = Mediator.getInstance();
 		$rootScope.mediator = mediator;
 		bestiary.scope = $rootScope;
+		resources = new Resources();
+		accumulator = new Accumulator(resources);
+		researchFacility = new ResearchFacility(accumulator,scientists);
 		openArena = new OpenArena(battle);
 		arena = new Arena(openArena, closedArena);
-		game = new Game(arena, researchFacility, accumulator);
+		game = new Game(arena, researchFacility);
 		bestiary.receiveEvent();
 		cloningFacility.receiveEvent();
 		$rootScope.mediator.registerListener("attack", attackListener);
