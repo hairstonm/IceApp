@@ -6,7 +6,7 @@ var ResearchFacility = function(accumulator,scientists){
 
    this.activate = function(researchType){
      eval("this." +researchType+ " += 1");
-     mediator.sendEvent("modifier", new ModifierMessage(researchType));
+     this.mediator.sendEvent("modifier", new ModifierMessage(researchType));
    };
 
    this.generateScience = function(){

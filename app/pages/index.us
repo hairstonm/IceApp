@@ -10,6 +10,7 @@
     <div ng-app ='app'>
     <div ng-controller="gameIncrementer">
     	<mission>You Done Broke it.</mission>
+      <div class = "resources">{{ resources.science }} </div>
       <div ng-repeat="message in missionLog track by $index">
         <div class="messages"> {{ message }} </div>
       </div>

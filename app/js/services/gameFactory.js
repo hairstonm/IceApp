@@ -1,17 +1,23 @@
-angular.module("app").factory('game', ['$rootScope', 'battle', function($rootScope, battle) {
+angular.module("app").factory('game', ['$rootScope', 'battle', 'resources', function($rootScope, battle, resources) {
 	var baseHealth = 15;
 	var mediator = Mediator.getInstance();
 	$rootScope.mediator = mediator;
+	var scientists = 1;
+	var accumulator = new Accumulator(resources);
+	var researchFacility = new ResearchFacility(accumulator,scientists);
 	var openArena = new OpenArena(battle);
 	var closedArena = new ClosedArena(battle);
 	var	arena = new Arena(openArena, closedArena);
-	return new Game(arena);
+	return new Game(arena, researchFacility);
 }]);
 
 angular.module("app").service('battle', function() {
 	return new Battle();
 });
 
+angular.module("app").service('resources', function() {
+	return new Resources();
+})
 angular.module("app").factory('bestiary', ['battle', function(battle) {
 	return new Bestiary(new Randomizer(), battle);
 }]);
@@ -56,13 +62,14 @@ var defineToggleMissionStatus = function($rootScope){
 	}
 }
 
-angular.module("app").controller('gameIncrementer', ['$rootScope', '$interval', 'game', 'bestiary', 'cloningFacility', 'battle',
-	function($rootScope, $interval, game, bestiary, cloningFacility, battle) {
+angular.module("app").controller('gameIncrementer', ['$rootScope', '$interval', 'game', 'resources', 'bestiary', 'cloningFacility', 'battle',
+	function($rootScope, $interval, game, resources, bestiary, cloningFacility, battle) {
 		$rootScope.missionInProgress = false;
 		$rootScope.missionButtonText = "Start Mission";
 		defineToggleMissionStatus($rootScope);
 		$rootScope.missionLog = [];
 		$rootScope.game = game;
+		$rootScope.resources = resources;
 		var listeners = createListeners(battle, bestiary, cloningFacility);
 		registerListeners(listeners,$rootScope);
 		bestiary.receiveEvent();
