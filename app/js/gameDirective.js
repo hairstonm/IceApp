@@ -17,11 +17,10 @@ myApp.directive('mission', function(game){
 	return {
 		restrict: 'E',
 		replace: true,
-		template: ['<div>',
-		 '<form>',
-		 	'<button ng-click="toggleMissionStatus()">{{missionButtonText}}</button>',
-		 '</form>'
-		 ].join(''),
 		 link : link
 	};
+});
+
+myApp.directive('research', function(){
+
 });
