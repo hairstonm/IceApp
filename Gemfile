@@ -7,4 +7,4 @@ gem 'watir-webdriver'
 gem 'cucumber'
 gem 'gherkin'
 gem 'page-object'
-
+gem 'waitutil'

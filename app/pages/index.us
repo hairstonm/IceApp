@@ -10,7 +10,7 @@
     <div ng-app ='app'>
     <div ng-controller="gameIncrementer">
     	<mission>
-        <button ng-click="toggleMissionStatus()">{{missionButtonText}}</button>
+        <button ng-click="toggleMissionStatus()" id="missionButton">{{missionButtonText}}</button>
       </mission>
       <research>
         <button>Research Armor</button>

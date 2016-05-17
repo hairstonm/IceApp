@@ -38,6 +38,7 @@ GEM
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
+    waitutil (0.2.1)
     watir (5.0.0)
       commonwatir (~> 4)
       watir-webdriver
@@ -53,6 +54,7 @@ DEPENDENCIES
   cucumber
   gherkin
   page-object
+  waitutil
   watir
   watir-webdriver
 
