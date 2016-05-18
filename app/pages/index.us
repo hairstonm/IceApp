@@ -16,8 +16,10 @@
         <button>Research Armor</button>
       </research>
       <div class = "resources">{{ resources.science }} </div>
-      <div ng-repeat="message in missionLog track by $index">
-        <div class="messages"> {{ message }} </div>
+      <div id="messageLog" >
+        <div ng-repeat="message in missionLog track by $index">
+             {{ message }}
+        </div>
       </div>
     </div>
   </body>

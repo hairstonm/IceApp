@@ -5,5 +5,5 @@ class Game
 
   button(:mission_button, :id=> "missionButton")
 
-  div(:message_log, :class => "messages")
+  div(:message_log, :id => "messageLog")
 end
