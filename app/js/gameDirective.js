@@ -21,6 +21,3 @@ myApp.directive('mission', function(game){
 	};
 });
 
-myApp.directive('research', function(){
-
-});

@@ -1,5 +1,5 @@
 describe("Game Directive ", function() {
-    var missionString = '<mission></mission>';
+    var missionString = '<mission><button ng-click="toggleMissionStatus()" id="missionButton">{{missionButtonText}}</button></mission>';
     var $compile;
     var $rootScope;
     var gameInstance;
@@ -20,6 +20,7 @@ describe("Game Directive ", function() {
     beforeEach(function(){
         element = $compile(missionString)($rootScope);
         $rootScope.game = gameInstance;
+        
         $rootScope.toggleMissionStatus = function() {
           $rootScope.$broadcast('toggleMissionStatus');
         }

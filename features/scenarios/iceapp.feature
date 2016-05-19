@@ -6,5 +6,5 @@ Feature:Combat Mission
 
   Scenario: Redshirt wins battle
     Given I start mission
-    When a monster dies
-    Then the redshirt is announced in the log
+    When a redshirt kills a monster
+    Then the redshirt gets some swag

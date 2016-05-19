@@ -1,4 +1,3 @@
-
 When(/^I start mission$/) do
   visit Game
   on Game do |page|
@@ -10,17 +9,23 @@ Then(/^a battle begins$/) do
   on Game do |page|
 
     WaitUtil.wait_for_condition("message log populated",
-                              :timeout_sec => 5,
-                              :delay_sec => 1) do
-    page.message_log.size > 0
-   end
+                                :timeout_sec => 5,
+                                :delay_sec => 1) do
+      page.message_log.size > 0
+    end
   end
 end
 
-When(/^a monster dies$/) do
-  pending
+When(/^a redshirt kills a monster$/) do
+  on Game do |page|
+    WaitUtil.wait_for_condition("redshirt wins",
+                                :timeout_sec => 10,
+                                :delay_sec => 1) do
+      page.message_log.include? "was killed"
+    end
+  end
 end
 
-Then(/^the redshirt is announced in the log$/) do
+Then(/^the redshirt gets some swag$/) do
   pending
 end
