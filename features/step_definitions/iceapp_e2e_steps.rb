@@ -28,11 +28,14 @@ end
 
 Then(/^the redshirt gets some swag$/) do
   on Game do |page|
-    WaitUntil.wait_for_condition("some swag",
+    resources =0;
+    WaitUtil.wait_for_condition("some shwag",
                                  :timeout_sec => 15,
                                  :delay_sec => 1) do
-      page.resources.each do |span|
-        span > 0
+      page.resources_elements.each do |resource|
+
+       resources += resource.text.to_i
+        assert(resources > 0, "shwag was supposed to be greater than zero but was #{resources}")
       end
     end
   end

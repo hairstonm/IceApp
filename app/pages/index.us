@@ -6,16 +6,22 @@
     <link rel="stylesheet" type="text/css" href="<%= css %>" media="all" />
   </head>
   <body>
+
     <script type="text/javascript" src="<%= js %>"></script>
     <div ng-app ='app'>
     <div ng-controller="gameIncrementer">
     	<mission>
+    	<div id="resources">
+        <span id= "copper" class="resource">0</span>
+    	<span id= "iron" class="resource">0</span>
+    	<span id= "steel" class="resource">0</span>
+    	<span id= "titanite" class="resource">0</span>
+        </div>
         <button ng-click="toggleMissionStatus()" id="missionButton">{{missionButtonText}}</button>
       </mission>
       <research>
         <button>Research Armor</button>
       </research>
-      <div class = "resources">{{ resources.science }} </div>
       <div id="messageLog" >
         <div ng-repeat="message in missionLog track by $index">
              {{ message }}
