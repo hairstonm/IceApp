@@ -27,5 +27,13 @@ When(/^a redshirt kills a monster$/) do
 end
 
 Then(/^the redshirt gets some swag$/) do
-  pending
+  on Game do |page|
+    WaitUntil.wait_for_condition("some swag",
+                                 :timeout_sec => 15,
+                                 :delay_sec => 1) do
+      page.resources.each do |span|
+        span > 0
+      end
+    end
+  end
 end

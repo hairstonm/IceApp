@@ -6,4 +6,9 @@ class Game
   button(:mission_button, :id=> "missionButton")
 
   div(:message_log, :id => "messageLog")
+
+
+  span(:iron_total, :id => "ironTotal", :class => "resource")
+  span(:copper_total, :id => "copperTotal", :class => "resource")
+
 end
