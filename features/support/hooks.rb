@@ -1,7 +1,6 @@
-Selenium::WebDriver::Firefox::Binary.path='C:\Program Files (x86)\NW FF\firefox.exe'
 
 Before do
-    @browser = Watir::Browser.new
+    @browser = Watir::Browser.new :chrome
 end
 
 After do
