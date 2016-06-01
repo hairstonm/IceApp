@@ -16,6 +16,7 @@
     	<span id= "iron" class="resource">0</span>
     	<span id= "steel" class="resource">0</span>
     	<span id= "titanite" class="resource">0</span>
+    	<span id= "science" class="resource">0</span>
         </div>
         <button ng-click="toggleMissionStatus()" id="missionButton">{{missionButtonText}}</button>
       </mission>
