@@ -21,4 +21,9 @@ this.steel = 0;
   this.addTitanite = function(titaniteAmount){
       this.titanite += titaniteAmount;
   }
+
+    this.addResource = function(){
+
+    }
+
 }
