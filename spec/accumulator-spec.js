@@ -8,6 +8,6 @@ describe("accumulator", function(){
 
       accumulator.generateScience(scientists);
 
-      td.verify(resources.addScience(1));
+      td.verify(resources.addResource("science", 1));
     });
 });

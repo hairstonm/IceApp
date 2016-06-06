@@ -5,25 +5,7 @@ this.titanite = 0;
 this.iron = 0;
 this.steel = 0;
 
-  this.addScience = function(incomingScience){
-      this.science += incomingScience;
+  this.addResource = function(resource, amount){
+      eval("this." + resource + " += " + amount);
   }
-
-    this.addCopper = function(copperAmount){
-        this.copper += copperAmount;
-    }
-  this.addIron = function(ironAmount){
-      this.iron += ironAmount;
-  }
-  this.addSteel = function(steelAmount){
-      this.steel += steelAmount;
-  }
-  this.addTitanite = function(titaniteAmount){
-      this.titanite += titaniteAmount;
-  }
-
-    this.addResource = function(){
-
-    }
-
 }

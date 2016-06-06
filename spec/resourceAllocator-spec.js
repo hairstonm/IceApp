@@ -7,6 +7,7 @@ describe("resourceAllocator", function() {
     var randomizer = td.object('Randomizer');
 
     it("adds resource to total resources", function () {
+        td.when(randomizer.randomize(td.matchers.isA(Number))).thenReturn(0);
         var resourceAllocator = new ResourceAllocator(resources, resourceContainer, randomizer, multiplier);
 
         resourceAllocator.receiveEvent(deathMessage);
