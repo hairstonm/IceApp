@@ -2,7 +2,7 @@ angular.module("app").factory('game', ['$rootScope', 'battle', 'resources', func
 	var baseHealth = 15;
 	var mediator = Mediator.getInstance();
 	$rootScope.mediator = mediator;
-	var scientists = 1;
+	var scientists = 0;
 	var accumulator = new Accumulator(resources);
 	var researchFacility = new ResearchFacility(accumulator,scientists);
 	var openArena = new OpenArena(battle);
@@ -69,7 +69,7 @@ angular.module("app").controller('gameIncrementer', ['$rootScope', '$interval', 
 		defineToggleMissionStatus($rootScope);
 		$rootScope.missionLog = [];
 		$rootScope.game = game;
-		$rootScope.resources = resources;
+		$rootScope.resources = resources.resources;
 		var listeners = createListeners(battle, bestiary, cloningFacility);
 		registerListeners(listeners,$rootScope);
 		bestiary.receiveEvent();

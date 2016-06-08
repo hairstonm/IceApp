@@ -12,49 +12,41 @@ describe("resources", function () {
    });
 
    it("adds science to total science", function () {
-      resources.science = 10;
+      resources.resources.science = 10;
       resources.addResource("science", newScience);
 
-      expect(resources.science).toEqual(10 + newScience);
+      expect(resources.resources.science).toEqual(10 + newScience);
    });
 
    it("adds copper resources to copper total", function () {
-      resources.copper = 10;
+      resources.resources.copper = 10;
 
       resources.addResource("copper", copperAmount);
 
-      expect(resources.copper).toEqual(10 + copperAmount);
+      expect(resources.resources.copper).toEqual(10 + copperAmount);
    });
 
    it("adds iron resources to iron total", function () {
-      resources.iron = 10;
+      resources.resources.iron = 10;
 
       resources.addResource("iron", ironAmount);
 
-      expect(resources.iron).toEqual(10 + ironAmount);
+      expect(resources.resources.iron).toEqual(10 + ironAmount);
    });
 
    it("adds steel resources to steel total", function () {
-      resources.steel = 10;
+      resources.resources.steel = 10;
 
       resources.addResource("steel", steelAmount);
 
-      expect(resources.steel).toEqual(10 + steelAmount);
+      expect(resources.resources.steel).toEqual(10 + steelAmount);
    });
 
    it("adds titanite resources to titanite total", function () {
-      resources.titanite = 10;
+      resources.resources.titanite = 10;
 
       resources.addResource("titanite", titaniteAmount);
 
-      expect(resources.titanite).toEqual(10 + titaniteAmount);
-   });
-   
-   it("updates Science total on display", function(){
-      resources.science = 10;
-      
-      resources.updateResourceDisplay(resource);
-
-      expect();
+      expect(resources.resources.titanite).toEqual(10 + titaniteAmount);
    });
 });
