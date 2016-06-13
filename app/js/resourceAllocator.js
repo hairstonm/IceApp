@@ -5,6 +5,6 @@ var ResourceAllocator = function(resources, resourceContainer , randomizer, mult
     this.multiplier = multiplier;
 
     this.receiveEvent = function(message){
-        resources.addResource(resourceContainer[randomizer.randomize(resourceContainer.length-1)], 1 * multiplier);
+        resources.addResource(this.resourceContainer[randomizer.randomize(this.resourceContainer.length-1)], 1 * multiplier);
     }
 }

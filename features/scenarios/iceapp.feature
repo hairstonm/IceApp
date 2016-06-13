@@ -8,3 +8,8 @@ Feature:Combat Mission
     Given I start mission
     When a redshirt kills a monster
     Then the redshirt gets some swag
+
+  Scenario: New Defender enters battle when current defender dies
+    Given I start mission
+    When a redshirt kills a monster
+    Then a new monster enters the frey

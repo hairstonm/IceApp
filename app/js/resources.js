@@ -1,5 +1,5 @@
 var Resources = function(){
-    this.resources = new Object();
+this.resources = new Object();
 this.resources.science = 0;
 this.resources.copper = 0;
 this.resources.titanite = 0;

@@ -40,3 +40,7 @@ Then(/^the redshirt gets some swag$/) do
     end
   end
 end
+
+Then(/^a new monster enters the frey$/) do
+  pending
+end

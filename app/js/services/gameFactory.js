@@ -26,14 +26,15 @@ angular.module("app").factory('cloningFacility', ['battle', function(battle) {
 	return new CloningFacility(battle);
 }]);
 
-var createListeners = function(battle, bestiary, cloningFacility){
+var createListeners = function(battle, bestiary, cloningFacility, resourceAllocator){
 		return {
 		attack : new AttackListener(),
 		defend : new DefenderListener(),
 		dead : new DeathListener(),
 		battle : new BattleListener(battle),
 		bestiary: bestiary,
-		cloningFacility: cloningFacility
+		cloningFacility: cloningFacility,
+		resourceAllocator: resourceAllocator
 	};
 };
 
@@ -44,6 +45,7 @@ var registerListeners = function(listeners, $rootScope){
 	$rootScope.mediator.registerListener('defenderDeath', listeners.bestiary);
 	$rootScope.mediator.registerListener('attackerDeath', listeners.dead);
 	$rootScope.mediator.registerListener('attackerDeath', listeners.cloningFacility);
+	$rootScope.mediator.registerListener('defenderDeath', listeners.resourceAllocator)
 }
 
 var assignScopeToMediators = function(mediator, $rootScope){
@@ -70,7 +72,10 @@ angular.module("app").controller('gameIncrementer', ['$rootScope', '$interval', 
 		$rootScope.missionLog = [];
 		$rootScope.game = game;
 		$rootScope.resources = resources.resources;
-		var listeners = createListeners(battle, bestiary, cloningFacility);
+		var multiplier = 1;
+		var resourceContainer = ["copper", "iron", "steel", "science", "titanite"]
+		var resourceAllocator = new ResourceAllocator(resources, resourceContainer , new Randomizer(), multiplier);
+		var listeners = createListeners(battle, bestiary, cloningFacility, resourceAllocator);
 		registerListeners(listeners,$rootScope);
 		bestiary.receiveEvent();
 		cloningFacility.receiveEvent()
