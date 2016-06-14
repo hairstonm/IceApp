@@ -15,4 +15,10 @@ describe("Bestiary", function() {
 
     td.verify(battle.loadNewDefender(td.matchers.anything()));
   });
+
+  it("adds monster name to page", function(){
+    var combatParty = bestiary.receiveEvent();
+
+    td.verify(scope.monsterName == "boogey");
+  })
 });

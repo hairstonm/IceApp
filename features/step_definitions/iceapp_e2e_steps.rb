@@ -44,3 +44,11 @@ end
 Then(/^a new monster enters the frey$/) do
   pending
 end
+
+Then(/^a monsters stats are loaded$/) do
+  on Game do |page|
+    assert(page.monsterHealth.length > 0, "monster health was not loaded")
+    assert(page.monsterName.length > 0, "monster name was not loaded")
+    assert(page.monsterDamage.length >0, "monster damage was not loaded")
+  end
+end

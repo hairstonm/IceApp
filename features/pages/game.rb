@@ -14,4 +14,7 @@ class Game
   # def resource
   #    [:iron_total, :copper_total]
   # end
+  span(:monsterHealth, :id => "monsterHealth")
+  span(:monsterDamage, :id => "monsterDamage")
+  span(:monsterName, :id => "monsterName")
 end

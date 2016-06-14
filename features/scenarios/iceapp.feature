@@ -13,3 +13,7 @@ Feature:Combat Mission
     Given I start mission
     When a redshirt kills a monster
     Then a new monster enters the frey
+
+  Scenario: Combat shows monster information statistics
+    When I start mission
+    Then a monsters stats are loaded
