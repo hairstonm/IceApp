@@ -28,27 +28,33 @@ end
 
 Then(/^the redshirt gets some swag$/) do
   on Game do |page|
-    resources =0;
+    resources =0
     WaitUtil.wait_for_condition("some shwag",
                                  :timeout_sec => 15,
                                  :delay_sec => 1) do
       page.resources_elements.each do |resource|
-
-       resources += resource.text.to_i
-        assert(resources > 0, "shwag was supposed to be greater than zero but was #{resources}")
+        resources += resource.text.to_i
       end
+      resources > 0
     end
+    assert(resources > 0, "shwag was supposed to be greater than zero but was #{resources}")
   end
 end
 
-Then(/^a new monster enters the frey$/) do
-  pending
+Then(/^a new monster enters the fray$/) do
+  on Game do |page|
+    WaitUtil.wait_for_condition("some shwag",
+                                :timeout_sec => 15,
+                                :delay_sec => 1) do
+      page.monsterHealth.to_i <= 0
+    end
+    assert(page.monsterHealth.to_i> 0)
+  end
 end
 
 Then(/^a monsters stats are loaded$/) do
   on Game do |page|
     assert(page.monsterHealth.length > 0, "monster health was not loaded")
     assert(page.monsterName.length > 0, "monster name was not loaded")
-    assert(page.monsterDamage.length >0, "monster damage was not loaded")
   end
 end

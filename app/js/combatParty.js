@@ -10,7 +10,7 @@ var CombatParty = function (baseDamage, baseHealth, mediator, name, type) {
          mediator.sendEvent(type + "Death", new DeathMessage(name));
       }
       else {
-         mediator.sendEvent("defend", new AttackMessage(baseDamage, name));
+         mediator.sendEvent("defend", new AttackMessage(baseDamage, name, type));
       }
       ;
    };

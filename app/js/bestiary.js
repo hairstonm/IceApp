@@ -9,8 +9,9 @@ var Bestiary = function (randomizer, battle) {
             new CombatParty(1, 1, Mediator.getInstance(), "Trump", 'defender')];
          return bestiary[randomizer.randomize(bestiary.length)];
       }
-      this.scope.monsterName = newCombatParty().partyName;
-      this.scope.monsterHealth = newCombatParty().health;
-      battle.loadNewDefender(newCombatParty());
+      var monster = newCombatParty();
+      this.scope.monsterName = monster.partyName;
+      this.scope.monsterHealth = monster.health;
+      battle.loadNewDefender(monster);
    }
 }

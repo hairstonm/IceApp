@@ -12,7 +12,7 @@ Feature:Combat Mission
   Scenario: New Defender enters battle when current defender dies
     Given I start mission
     When a redshirt kills a monster
-    Then a new monster enters the frey
+    Then a new monster enters the fray
 
   Scenario: Combat shows monster information statistics
     When I start mission
