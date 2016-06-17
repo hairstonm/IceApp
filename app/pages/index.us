@@ -2,34 +2,45 @@
 <html>
   <head>
     <title><%= pkg.name %></title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    
     <link rel="stylesheet" type="text/css" href="<%= css %>" media="all" />
   </head>
   <body>
 
     <script type="text/javascript" src="<%= js %>"></script>
     <div ng-app ='app'>
+
     <div ng-controller="gameIncrementer">
     	<mission>
+        <div class="container">
     	<div id="resources">
     	    <span ng-repeat="(key,value) in resources" id="{{key}}" class="resource">
     	        {{value}}
     	    </span>
         </div>
+      </div>
+      <div class="container">
         <div id="combat">
             <span id="monsterName">{{monsterName}}</span>
+            <progress value={{monsterHealth}} max={{monsterMaxHealth}}></progress>
             <span id="monsterHealth">{{monsterHealth}}</span>
          </div>
+       </div>
         <button ng-click="toggleMissionStatus()" id="missionButton">{{missionButtonText}}</button>
       </mission>
       <research>
         <button>Research Armor</button>
       </research>
+      <div class="container" style="background-color:red">
       <div id="messageLog" >
         <div ng-repeat="message in missionLog track by $index">
              {{ message }}
         </div>
       </div>
     </div>
+  </div>
   </body>
 </html>

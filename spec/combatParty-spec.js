@@ -37,7 +37,7 @@ describe("CombatParty", function(){
 		attacker.attack(defender);
 
 		td.verify(mediator.sendEvent("attack",captor.capture()));
-		expect(captor.value.type).toEqual("Redshirt");
+		expect(captor.value.name).toEqual("Redshirt");
 	});
 
 	it("reports the type of the defender", function(){
@@ -45,7 +45,7 @@ describe("CombatParty", function(){
 		attacker.receiveAttack(baseDamage);
 
 		td.verify(mediator.sendEvent("defend",captor.capture()));
-		expect(captor.value.type).toEqual("Redshirt");
+		expect(captor.value.name).toEqual("Redshirt");
 	});
 
 	// it("sends death message when combat party dies", function(){

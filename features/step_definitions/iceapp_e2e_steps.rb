@@ -43,7 +43,7 @@ end
 
 Then(/^a new monster enters the fray$/) do
   on Game do |page|
-    WaitUtil.wait_for_condition("some shwag",
+    WaitUtil.wait_for_condition("new monster",
                                 :timeout_sec => 15,
                                 :delay_sec => 1) do
       page.monsterHealth.to_i <= 0
