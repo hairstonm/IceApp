@@ -8,8 +8,8 @@ class Game
   div(:message_log, :id => "messageLog")
 
   spans(:resources, :class => "resource")
-  span(:monsterHealth, :id => "monsterHealth")
-  span(:monsterDamage, :id => "monsterDamage")
-  span(:monsterName, :id => "monsterName")
+  span(:villianHealth, :id => "villianHealth")
+  span(:villianDamage, :id => "villianDamage")
+  span(:villianName, :id => "villianName")
   div(:villianCount, :id => "villianCount")
 end
