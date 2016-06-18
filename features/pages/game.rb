@@ -11,4 +11,5 @@ class Game
   span(:monsterHealth, :id => "monsterHealth")
   span(:monsterDamage, :id => "monsterDamage")
   span(:monsterName, :id => "monsterName")
+  div(:villianCount, :id => "villianCount")
 end

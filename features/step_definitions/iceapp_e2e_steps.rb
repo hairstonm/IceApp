@@ -30,8 +30,8 @@ Then(/^the redshirt gets some swag$/) do
   on Game do |page|
     resources =0
     WaitUtil.wait_for_condition("some shwag",
-                                 :timeout_sec => 15,
-                                 :delay_sec => 1) do
+                                :timeout_sec => 15,
+                                :delay_sec => 1) do
       page.resources_elements.each do |resource|
         resources += resource.text.to_i
       end
@@ -42,14 +42,17 @@ Then(/^the redshirt gets some swag$/) do
 end
 
 Then(/^a new monster enters the fray$/) do
+  villianCounter = 0
   on Game do |page|
     WaitUtil.wait_for_condition("new monster",
                                 :timeout_sec => 15,
                                 :delay_sec => 1) do
-      page.monsterHealth.to_i <= 0
+
+      villianCounter += page.villianCount.to_i
+      villianCounter >0
     end
-    assert(page.monsterHealth.to_i> 0)
   end
+  assert(villianCounter > 0, "no villians were loaded")
 end
 
 Then(/^a monsters stats are loaded$/) do

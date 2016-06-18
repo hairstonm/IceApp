@@ -25,12 +25,12 @@ describe("Bestiary", function () {
    it("adds monster name to page", function () {
       var combatParty = bestiary.receiveEvent();
 
-      expect(bestiary.scope.monsterName).toEqual("CJJJM");
+      expect(bestiary.scope.villianName).toEqual("CJJJM");
    });
    
    it("adds monster health to page", function () {
       var combatParty = bestiary.receiveEvent();
 
-      expect(bestiary.scope.monsterHealth).toEqual(18);
+      expect(bestiary.scope.villianHealth).toEqual(41);
    });
 });

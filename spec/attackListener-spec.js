@@ -1,18 +1,15 @@
 describe('attackListener', function() {
-    var deathMessage = new DeathMessage("dead");
-    var defender = td.object("CombatParty");
-    var battle = td.object("Battle");
-    var message = new AttackMessage(15, "redshirt6132", "attacker");
-    var attackListener = new AttackListener();
+    var message = new AttackMessage(15, "redshirt6132", "hero");
+    var attackListener = new AttackListener("villain");
 
     beforeEach(inject(function ($rootScope) {
         attackListener.scope = $rootScope.$new();
         attackListener.scope.missionLog = [];
-        attackListener.scope.monsterHealth = 20;
+        attackListener.scope.villianHealth = 20;
     }));
-it("decreases monster health when an attacker attacks", function(){
+it("sends attackMessage to UI", function(){
     attackListener.receiveEvent(message);
 
-    expect(attackListener.scope.monsterHealth).toEqual(5);
-});
+    expect(attackListener.scope.missionLog).toContain("redshirt6132 attacked for 15 points of damage")
+})
 });

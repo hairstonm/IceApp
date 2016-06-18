@@ -1,8 +1,5 @@
-var AttackListener = function(){
+var AttackListener = function(type){
 	this.receiveEvent = function(message){
-		if("attacker" == message.type) {
-			this.scope.monsterHealth -= message.damage;
-		}
 		this.scope.missionLog.push(message.name + " attacked for " + message.damage + " points of damage");
 	}
 };

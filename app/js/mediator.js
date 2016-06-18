@@ -13,6 +13,7 @@ var Mediator = (function() {
       },
 
       sendEvent: function(messageType, message) {
+          console.log(messageType);
 				listeners[messageType].forEach(function(listener){
 					listener.receiveEvent(message);
 				});

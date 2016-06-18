@@ -28,24 +28,33 @@ angular.module("app").factory('cloningFacility', ['battle', function (battle) {
 
 var createListeners = function (battle, bestiary, cloningFacility, resourceAllocator) {
    return {
-      attack: new AttackListener(),
-      defend: new DefenderListener(),
-      dead: new DeathListener(),
+      heroAttack: new AttackListener(),
+      villianAttack: new AttackListener(),
+      heroDefend: new DefenderListener(),
+      villianDefend: new DefenderListener(),
+      heroDeath: new DeathListener("hero"),
+      villianDeath: new DeathListener("villian"),
       battle: new BattleListener(battle),
       bestiary: bestiary,
       cloningFacility: cloningFacility,
-      resourceAllocator: resourceAllocator
+      resourceAllocator: resourceAllocator,
+      heroHealth: new HealthListener("hero"),
+      villianHealth: new HealthListener("villian")
    };
 };
 
 var registerListeners = function (listeners, $rootScope) {
-   $rootScope.mediator.registerListener("attack", listeners.attack);
-   $rootScope.mediator.registerListener("defend", listeners.defend);
-   $rootScope.mediator.registerListener('defenderDeath', listeners.dead);
-   $rootScope.mediator.registerListener('defenderDeath', listeners.bestiary);
-   $rootScope.mediator.registerListener('attackerDeath', listeners.dead);
-   $rootScope.mediator.registerListener('attackerDeath', listeners.cloningFacility);
-   $rootScope.mediator.registerListener('defenderDeath', listeners.resourceAllocator)
+   $rootScope.mediator.registerListener("heroAttack", listeners.heroAttack);
+   $rootScope.mediator.registerListener("heroDefend", listeners.heroDefend);
+   $rootScope.mediator.registerListener("villianAttack", listeners.villianAttack);
+   $rootScope.mediator.registerListener("villianDefend", listeners.villianDefend);
+   $rootScope.mediator.registerListener('heroDeath', listeners.heroDeath);
+   $rootScope.mediator.registerListener('villianDeath', listeners.bestiary);
+   $rootScope.mediator.registerListener('villianDeath', listeners.villianDeath);
+   $rootScope.mediator.registerListener('heroDeath', listeners.cloningFacility);
+   $rootScope.mediator.registerListener('villianDeath', listeners.resourceAllocator)
+   $rootScope.mediator.registerListener('heroHealth', listeners.heroHealth);
+   $rootScope.mediator.registerListener('villianHealth', listeners.villianHealth);
 }
 
 var assignScopeToMediators = function (mediator, $rootScope) {
@@ -72,6 +81,7 @@ angular.module("app").controller('gameIncrementer', ['$rootScope', '$interval', 
       $rootScope.monsterName = "";
       $rootScope.monsterHealth = "";
       $rootScope.missionLog = [];
+      $rootScope.villianCount = 0;
       $rootScope.game = game;
       $rootScope.resources = resources.resources;
       var multiplier = 1;

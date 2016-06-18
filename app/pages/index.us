@@ -14,6 +14,7 @@
     <div ng-app ='app'>
 
     <div ng-controller="gameIncrementer">
+    <div id="villianCount">{{villianCount}}</div>
     	<mission>
         <div class="container">
     	<div id="resources">
@@ -24,9 +25,9 @@
       </div>
       <div class="container">
         <div id="combat">
-            <span id="monsterName">{{monsterName}}</span>
-            <progress value={{monsterHealth}} max={{monsterMaxHealth}}></progress>
-            <span id="monsterHealth">{{monsterHealth}}</span>
+            <span id="villianName">{{villianName}}</span>
+            <progress value={{villianHealth}} max={{villianMaxHealth}}></progress>
+            <span id="villianHealth">{{villianHealth}}</span>
          </div>
        </div>
         <button ng-click="toggleMissionStatus()" id="missionButton">{{missionButtonText}}</button>
@@ -34,7 +35,7 @@
       <research>
         <button>Research Armor</button>
       </research>
-      <div class="container" style="background-color:red">
+      <div class="container">
       <div id="messageLog" >
         <div ng-repeat="message in missionLog track by $index">
              {{ message }}
@@ -42,5 +43,6 @@
       </div>
     </div>
   </div>
+
   </body>
 </html>
