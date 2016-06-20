@@ -17,3 +17,7 @@ Feature:Combat Mission
   Scenario: Combat shows monster information statistics
     When I start mission
     Then a monsters stats are loaded
+
+  Scenario: Combat shows Heros Health
+    When I start mission
+    Then a heros health is loaded

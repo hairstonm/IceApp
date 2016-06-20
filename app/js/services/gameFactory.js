@@ -28,10 +28,10 @@ angular.module("app").factory('cloningFacility', ['battle', function (battle) {
 
 var createListeners = function (battle, bestiary, cloningFacility, resourceAllocator) {
    return {
-      heroAttack: new AttackListener(),
-      villianAttack: new AttackListener(),
-      heroDefend: new DefenderListener(),
-      villianDefend: new DefenderListener(),
+      heroAttack: new AttackListener("hero"),
+      villianAttack: new AttackListener("villian"),
+      heroDefend: new DefenderListener("hero"),
+      villianDefend: new DefenderListener("villian"),
       heroDeath: new DeathListener("hero"),
       villianDeath: new DeathListener("villian"),
       battle: new BattleListener(battle),

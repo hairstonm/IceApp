@@ -61,3 +61,10 @@ Then(/^a monsters stats are loaded$/) do
     assert(page.villianName.length > 0, "monster name was not loaded")
   end
 end
+
+Then(/^a heros health is loaded$/) do
+  on Game do |page|
+    assert(page.heroHealth.length > 0, "Hero's health was not loaded")
+    assert(page.heroName.length > 0, "Hero's name was not loaded")
+  end
+end
