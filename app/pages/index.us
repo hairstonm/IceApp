@@ -26,6 +26,7 @@
       <div class="container">
         <div id="combat">
             <div id="heroName">{{heroName}}</div>
+            <progress value={{heroHealth}} max={{heroMaxHealth}}></progress>
             <div id="heroHealth">{{heroHealth}}</div>
             <span id="villianName">{{villianName}}</span>
             <progress value={{villianHealth}} max={{villianMaxHealth}}></progress>
