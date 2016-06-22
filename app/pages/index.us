@@ -18,6 +18,7 @@
     	<mission>
         <div class="container">
     	<div id="resources">
+      <span id="resources"> Resources: </span>
     	    <span ng-repeat="(key,value) in resources" id="{{key}}" class="resource">
     	        {{value}}
     	    </span>
@@ -25,12 +26,16 @@
       </div>
       <div class="container">
         <div id="combat">
-            <div id="heroName">{{heroName}}</div>
+        <div id="hero">
+            <span id="heroName">{{heroName}}</span>
             <progress value={{heroHealth}} max={{heroMaxHealth}}></progress>
-            <div id="heroHealth">{{heroHealth}}</div>
+            <span id="heroHealth">{{heroHealth}}</span>
+            </div>
+            <div id="villian">
             <span id="villianName">{{villianName}}</span>
             <progress value={{villianHealth}} max={{villianMaxHealth}}></progress>
             <span id="villianHealth">{{villianHealth}}</span>
+         </div>
          </div>
        </div>
         <button ng-click="toggleMissionStatus()" id="missionButton">{{missionButtonText}}</button>
