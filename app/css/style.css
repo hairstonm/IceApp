@@ -2,3 +2,9 @@
   background-color: #efefef;
   border: 1px solid #dedede;
 }
+
+#messageLog{
+  height: 17em;
+  overflow-y: scroll;
+  scrollTop: scrollHeight;
+}
