@@ -1,10 +1,19 @@
 .hello {
-  background-color: #efefef;
-  border: 1px solid #dedede;
+    background-color: #efefef;
+    border: 1px solid #dedede;
 }
 
-#messageLog{
-  height: 17em;
-  overflow-y: scroll;
-  scrollTop: scrollHeight;
+#messageLog {
+    height: 17em;
+    overflow-y: scroll;
+    width:30%;
+}
+
+#villianCount {
+    display: none;
+}
+
+
+* {
+    /*border: 1px solid black;*/
 }

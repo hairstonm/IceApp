@@ -72,6 +72,7 @@ var defineToggleMissionStatus = function ($rootScope) {
       $rootScope.$broadcast('toggleMissionStatus');
    }
 }
+angular.module("app",['luegg.directives']);
 
 angular.module("app").controller('gameIncrementer', ['$rootScope', '$interval', 'game', 'resources', 'bestiary', 'cloningFacility', 'battle',
    function ($rootScope, $interval, game, resources, bestiary, cloningFacility, battle) {
