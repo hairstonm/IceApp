@@ -21,3 +21,8 @@ Feature:Combat Mission
   Scenario: Combat shows Heros Health
     When I start mission
     Then a heros health is loaded
+
+  Scenario: Can research copper armour
+    Given I have enough copper and science
+    When I choose to research copper armour
+    Then armor has been increased

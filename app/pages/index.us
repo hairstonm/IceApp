@@ -45,8 +45,9 @@
        </div>
         <button ng-click="toggleMissionStatus()" id="missionButton">{{missionButtonText}}</button>
       </mission>
-      <research>
-        <button>Research Armor</button>
+      <research id="researchFacility">
+         <button>Research Armor</button>
+
       </research>
       <div class="container">
         <div id="messageLog">

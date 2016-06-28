@@ -91,3 +91,6 @@ DEPENDENCIES
   waitutil
   watir
   watir-webdriver
+
+BUNDLED WITH
+   1.12.2

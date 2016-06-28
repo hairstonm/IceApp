@@ -68,3 +68,15 @@ Then(/^a heros health is loaded$/) do
     assert(page.heroName.length > 0, "Hero's name was not loaded")
   end
 end
+
+Given(/^I have enough copper and science$/) do
+  pending
+end
+
+When(/^I choose to research copper armour$/) do
+  pending
+end
+
+Then(/^armor has been increased$/) do
+  fail()
+end

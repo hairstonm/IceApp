@@ -12,6 +12,6 @@ class Game
   span(:villianDamage, :id => "villianDamage")
   span(:villianName, :id => "villianName")
   div(:villianCount, :id => "villianCount")
-  div(:heroHealth, :id => "heroHealth")
-  div(:heroName, :id => "heroName")
+  span(:heroHealth, :id => "heroHealth")
+  span(:heroName, :id => "heroName")
 end

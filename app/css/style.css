@@ -10,9 +10,13 @@
 }
 
 #villianCount {
-    display: none;
+
 }
 
+#researchFacility {
+    float: right;
+    padding-right: 5%;
+}
 
 * {
     /*border: 1px solid black;*/
