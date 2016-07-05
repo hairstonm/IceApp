@@ -70,7 +70,9 @@ Then(/^a heros health is loaded$/) do
 end
 
 Given(/^I have enough copper and science$/) do
-  pending
+  visit Game
+  @browser.execute_script("var ab = document.createElement('test'); document.body.appendChild(ab); $('test').text('HelloJamesAndMattAndChrisAndTylerAndSeemaAndCamilleAnd!!!!!!!!!!'); $('test').attr('tabindex',-1).focus(); $('test').attr('ng-focus', 'setResources(2, 400)'); ")
+  sleep 100
 end
 
 When(/^I choose to research copper armour$/) do
