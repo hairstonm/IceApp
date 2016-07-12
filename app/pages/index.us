@@ -16,10 +16,11 @@
   <body>
 
     <script type="text/javascript" src="<%= js %>"></script>
-    <div ng-app ='app'>
+    <div id="appMain" ng-app ='app'>
 
-    <div ng-controller="gameIncrementer">
+    <div id="meemee" ng-controller="gameIncrementer">
     <div id="villianCount">{{villianCount}}</div>
+    <test><button id="setResources" ng-click="setResources()"></button></test>
     	<mission>
         <div class="container">
     	<div id="resources">

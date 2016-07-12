@@ -67,6 +67,11 @@ var assignScopeToListeners = function (listeners, $rootScope) {
    }
 }
 
+var defineSetResources = function ($rootScope){
+   $rootScope.setResources = function(){
+      $rootScope.$broadcast('setResource');
+   }
+}
 var defineToggleMissionStatus = function ($rootScope) {
    $rootScope.toggleMissionStatus = function () {
       $rootScope.$broadcast('toggleMissionStatus');
@@ -83,6 +88,7 @@ angular.module("app").controller('gameIncrementer', ['$rootScope', '$interval', 
       $rootScope.villianCount = 0;
       $rootScope.game = game;
       $rootScope.resources = resources.resources;
+      defineSetResources($rootScope);
       var multiplier = 1;
       var resourceContainer = ["copper", "iron", "steel", "science", "titanite"]
       var resourceAllocator = new ResourceAllocator(resources, resourceContainer, new Randomizer(), multiplier);

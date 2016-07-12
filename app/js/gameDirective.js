@@ -16,7 +16,7 @@ myApp.directive('mission', function (game) {
 
     myApp.directive('test', function (game) {
         function link(scope) {
-            scope.$on('setResources', function (a, b) {
+            scope.$on('setResources', function () {
                 alert("whad up!");
             });
         };

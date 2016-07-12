@@ -71,7 +71,9 @@ end
 
 Given(/^I have enough copper and science$/) do
   visit Game
-  @browser.execute_script("var ab = document.createElement('test'); document.body.appendChild(ab); $('test').text('HelloJamesAndMattAndChrisAndTylerAndSeemaAndCamilleAnd!!!!!!!!!!'); $('test').attr('tabindex',-1).focus(); $('test').attr('ng-focus', 'setResources(2, 400)'); ")
+
+  htmlString = "$('#meemee').append('<test></test>');$('test').append('<button id=\"setResources\" ng-click=\"setResources()\"></button>');$('#setResources').click();"
+  @browser.execute_script(htmlString)
   sleep 100
 end
 
