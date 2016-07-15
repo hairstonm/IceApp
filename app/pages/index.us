@@ -46,10 +46,9 @@
        </div>
         <button ng-click="toggleMissionStatus()" id="missionButton">{{missionButtonText}}</button>
       </mission>
-      <research id="researchFacility">
-         <button>Research Armor</button>
-
-      </research>
+      <researchFacility>
+         <button ng-click="research('armor')" id="researchArmorButton">Research Armor</button>
+      </researchFacility>
       <div class="container">
         <div id="messageLog">
             <div ng-repeat="message in missionLog track by $index" scroll-glue>

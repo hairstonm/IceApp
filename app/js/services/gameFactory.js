@@ -69,7 +69,7 @@ var assignScopeToListeners = function (listeners, $rootScope) {
 
 var defineSetResources = function ($rootScope){
    $rootScope.setResources = function(){
-      $rootScope.$broadcast('setResource');
+      $rootScope.$broadcast('setResources');
    }
 }
 var defineToggleMissionStatus = function ($rootScope) {
@@ -77,11 +77,18 @@ var defineToggleMissionStatus = function ($rootScope) {
       $rootScope.$broadcast('toggleMissionStatus');
    }
 }
+
+var defineResearch = function ($rootScope){
+   $rootScope.research = function(){
+      $rootScope.$broadcast('research');
+   }
+}
 angular.module("app").controller('gameIncrementer', ['$rootScope', '$interval', 'game', 'resources', 'bestiary', 'cloningFacility', 'battle',
    function ($rootScope, $interval, game, resources, bestiary, cloningFacility, battle) {
       $rootScope.missionInProgress = false;
       $rootScope.missionButtonText = "Start Mission";
       defineToggleMissionStatus($rootScope);
+      defineResearch($rootScope);
       $rootScope.monsterName = "";
       $rootScope.monsterHealth = "";
       $rootScope.missionLog = [];
